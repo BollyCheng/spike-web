@@ -1,0 +1,55 @@
+.spike-header-container {
+    width: 100%;
+    height: 100%;
+    background: rgba(127, 127, 127, 0.5);
+    border-radius: 4px;
+}
+
+.spike-logo {
+    background: url("../../image/framework/logo.jpg") no-repeat center center;
+    background-size: 40px 40px;
+    width: 40px;
+    height: 40px;
+    margin: 20px;
+}
+
+@media (min-width: 768px) {
+    .spike-brands {
+        float: left;
+        width: 200px;
+        height: 100%;
+        padding: 25px 20px;
+    }
+
+    .spike-applications {
+        width: 100%;
+        height: 100%;
+    }
+
+    .spike-user {
+        display: inline-block;
+        float: right;
+        height: 100%;
+        padding: 20px 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .spike-brands {
+        display: none;
+    }
+
+    .spike-applications {
+        float: left;
+        width: 100%;
+        height: 100%;
+        margin-left: -400px;
+        padding-left: 400px;
+    }
+
+    .spike-user {
+        float: right;
+        height: 100%;
+        width: 200px;
+    }
+}
