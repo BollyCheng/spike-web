@@ -13,13 +13,14 @@
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
 
-    <script type="text/javascript" src="<spring:url value='/resources/js/jquery.min.js' />"></script>
-    <script type="text/javascript" src="<spring:url value="/resources/js/framework/sidebar.js" /> "></script>
-
     <link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/icon.css" />"/>
     <link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/framework/framework.css" />"/>
     <link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/framework/header.css" />"/>
     <link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/framework/sidebar.css" />"/>
+    <link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/content.css" />"/>
+
+    <script type="text/javascript" src="<spring:url value='/resources/js/jquery.js' />"></script>
+    <script type="text/javascript" src="<spring:url value="/resources/js/framework/sidebar.js" /> "></script>
 
 </head>
 <body>
@@ -28,17 +29,32 @@
     <div class="spike-header-container">
         <div class="spike-brands">
             <a href="#">
-                <div class="icon icon-leaf" style="font-size: 35px;">
-                    <span>Spike</span>
-                </div>
+                <i class="icon icon-leaf"></i>
+                <span>Spike</span>
             </a>
         </div>
         <div class="spike-user">
             <a href="#">成响林</a>
-            <a href="#"> <i class="icon icon-user" style="font-size: 30px;"></i></a>
+            <a href="#" class="btn-group">
+                <i class="icon icon-user"></i>
+                <i class="icon icon-play3"></i>
+            </a>
         </div>
         <div class="spike-applications">
-
+            <ol>
+                <li>
+                    <a href="#" class="active">
+                        <i class="icon icon-home"></i>
+                        <span>UPS</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon icon-infinite"></i>
+                        <span>ITS</span>
+                    </a>
+                </li>
+            </ol>
         </div>
     </div>
 </div>
@@ -47,7 +63,7 @@
         <div class="sidebar-content">
             <ul id="sidebar-menu" class="sidebar-menu">
                 <li>
-                    <a href="#">首页</a>
+                    <a href="#" class="active">首页</a>
                 </li>
                 <li>
                     <a href="#">基础资料</a>
@@ -86,12 +102,47 @@
         </div>
     </div>
     <div class="spike-content">
+        <div class="spike-content-search">
+            <div>
+                <label class="radio">
+                    <input type="radio" name="category" checked="checked"/>
+                    <span>致命</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="category"/>
+                    <span>严重</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="category"/>
+                    <span>一般</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="category"/>
+                    <span>提示</span>
+                </label>
+            </div>
+            <div>
+                <select class="selected">
 
+                </select>
+            </div>
+        </div>
     </div>
 </div>
 <div class="spike-footer">
-
 </div>
+
+<div class="spike-mask"></div>
+<div class="spike-mask-msg">
+    <div class="wave-wrapper">
+        <div class="w-rect rect1"></div>
+        <div class="w-rect rect2"></div>
+        <div class="w-rect rect3"></div>
+        <div class="w-rect rect4"></div>
+        <div class="w-rect rect5"></div>
+    </div>
+</div>
+
 </body>
 </html>
 
