@@ -2,7 +2,7 @@
   Author  : Bolly
   CreatAt : 2017/4/21 21:48
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <html>
@@ -18,9 +18,13 @@
     <link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/framework/header.css" />"/>
     <link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/framework/sidebar.css" />"/>
     <link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/content.css" />"/>
+    <link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/metroStyle.css" />">
 
     <script type="text/javascript" src="<spring:url value='/resources/js/jquery.js' />"></script>
     <script type="text/javascript" src="<spring:url value="/resources/js/framework/sidebar.js" /> "></script>
+    <script type="text/javascript" src="<spring:url value="/resources/js/jquery.ztree.core.js" />"></script>
+    <script type="text/javascript" src="<spring:url value="/resources/js/jquery.ztree.excheck.js" />"></script>
+    <script type="text/javascript" src="<spring:url value="/resources/js/framework/grouptree.js" /> "></script>
 
 </head>
 <body>
@@ -102,30 +106,40 @@
         </div>
     </div>
     <div class="spike-content">
-        <div class="spike-content-search">
-            <div>
-                <label class="radio">
-                    <input type="radio" name="category" checked="checked"/>
-                    <span>致命</span>
-                </label>
-                <label class="radio">
-                    <input type="radio" name="category"/>
-                    <span>严重</span>
-                </label>
-                <label class="radio">
-                    <input type="radio" name="category"/>
-                    <span>一般</span>
-                </label>
-                <label class="radio">
-                    <input type="radio" name="category"/>
-                    <span>提示</span>
-                </label>
+        <div class="spike-content-header">
+            <div class="spike-content-header-breadcrumb">
+                <label class="spike-content-header-title">部门&用户管理</label>
             </div>
-            <div>
-                <select class="selected">
-
-                </select>
+            <div class="spike-content-header-search">
+                <div>
+                    <label class="radio">
+                        <input type="radio" name="category" checked="checked"/>
+                        <span>致命</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="category"/>
+                        <span>严重</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="category"/>
+                        <span>一般</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="category"/>
+                        <span>提示</span>
+                    </label>
+                </div>
             </div>
+            <div class="spike-content-header-main">
+                <ol>
+                    <li><a href="javascript:void(0)">你好</a></li>
+                    <li><a href="javascript:void(0)">我好</a></li>
+                    <li><a href="javascript:void(0)">大家好</a></li>
+                </ol>
+            </div>
+        </div>
+        <div class="spike-content-main">
+            <ul id="groupTree" class="ztree"></ul>
         </div>
     </div>
 </div>
@@ -147,6 +161,10 @@
 </html>
 
 <script type="text/javascript">
-    jQuery("#sidebar-menu").sidebarMenu();
+
+    $("#sidebar-menu").sidebarMenu();
+
+    $("#groupTree").showDeptTree(null);
+
 </script>
 

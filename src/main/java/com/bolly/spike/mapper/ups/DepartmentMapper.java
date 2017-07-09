@@ -12,8 +12,14 @@ import java.util.List;
 @Repository
 public interface DepartmentMapper {
 
+    void insert(Department department);
+
+    void deleteById(Department department);
+
+    void update(Department department);
+
     Department loadById(Long id);
 
-    List<Department> list();
+    List<Department> list(Department department);
 
 }

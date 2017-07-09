@@ -11,10 +11,10 @@
     </resultMap>
 
     <insert id="insert">
-        insert into t_user (
+        INSERT INTO t_user (
           f_id, f_username, f_password, f_nickname, f_department_id, f_create_by, f_create_at
-        ) values (
-          #{id}, #{username}, #{password}, #{nickname}, #{department.id}, #{createBy.id}, sysdate()
+        ) VALUES (
+          #{id}, #{username}, #{password}, #{nickname}, #{department.id}, #{creator.id}, sysdate()
         )
     </insert>
 

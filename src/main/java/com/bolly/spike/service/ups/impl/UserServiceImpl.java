@@ -1,8 +1,8 @@
-package com.bolly.spike.service.impl;
+package com.bolly.spike.service.ups.impl;
 
 import com.bolly.spike.entity.ups.User;
 import com.bolly.spike.mapper.ups.UserMapper;
-import com.bolly.spike.service.UserService;
+import com.bolly.spike.service.ups.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

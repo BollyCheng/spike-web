@@ -1,4 +1,4 @@
-package com.bolly.spike.service;
+package com.bolly.spike.service.ups;
 
 import com.bolly.spike.entity.ups.User;
 

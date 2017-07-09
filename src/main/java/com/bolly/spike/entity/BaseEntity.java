@@ -1,6 +1,7 @@
 package com.bolly.spike.entity;
 
 import com.bolly.spike.entity.ups.User;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -23,8 +24,8 @@ public abstract class BaseEntity implements Serializable {
 
     private User creator;//创建人
     private Date createAt;//创建时间
-    private User lastUpdateBy;//最后更新人
-    private Date lastUpdateAt;//最后更新时间
+    private User lastEditBy;//最后更新人
+    private Date lastEditAt;//最后更新时间
 
     public Long getId() {
         return Id;
@@ -43,27 +44,35 @@ public abstract class BaseEntity implements Serializable {
     }
 
     public Date getCreateAt() {
-        return createAt;
+        if (createAt == null)
+            return null;
+        return (Date) createAt.clone();
     }
 
     public void setCreateAt(Date createAt) {
-        this.createAt = createAt;
+        this.createAt = (Date) createAt.clone();
     }
 
-    public User getLastUpdateBy() {
-        return lastUpdateBy;
+    public User getLastEditBy() {
+        return lastEditBy;
     }
 
-    public void setLastUpdateBy(User lastUpdateBy) {
-        this.lastUpdateBy = lastUpdateBy;
+    public void setLastEditBy(User lastEditBy) {
+        this.lastEditBy = lastEditBy;
     }
 
-    public Date getLastUpdateAt() {
-        return lastUpdateAt;
+    public Date getLastEditAt() {
+        if (lastEditAt == null)
+            return null;
+        return (Date) lastEditAt.clone();
     }
 
-    public void setLastUpdateAt(Date lastUpdateAt) {
-        this.lastUpdateAt = lastUpdateAt;
+    public void setLastEditAt(Date lastEditAt) {
+        this.lastEditAt = (Date) lastEditAt.clone();
     }
 
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 }
