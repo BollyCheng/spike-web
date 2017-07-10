@@ -37,8 +37,8 @@
             expandSpeed: "fast",//节点展开、折叠时的动画速度
             fontCss: {},//个性化文字样式，只针对 zTree 在节点上显示的<A>对象
             addDiyDom: addDiyDom, //在节点上固定显示用户自定义控件
-            addHoverDom: addHoverDom,//当鼠标移动到节点上时，显示用户自定义控件
-            removeHoverDom: removeHoverDom//用于当鼠标移出节点时，隐藏用户自定义控件
+            addHoverDom: null,//当鼠标移动到节点上时，显示用户自定义控件
+            removeHoverDom: null//用于当鼠标移出节点时，隐藏用户自定义控件
         },
         check: {
             enable: true,//设置 zTree 的节点上是否显示 checkbox / radio
@@ -69,7 +69,6 @@
         aObj.children().remove();
         //aObj.find("span[treenode_ico]").remove(); //移除图标
 
-
         var ul = $("<ul>")
             .addClass("more");
         for (var i = 0; i < 5; i++) {
@@ -99,29 +98,17 @@
         aObj.append(stateDiv)
             .append(tipDiv)
             .append(nameDiv)
-            .append(selectDiv);
+            .after(selectDiv);
 
-    };
-    //
-    function addHoverDom(treeId, treeNode) {
-        var aObj = $("#" + treeNode.tId + "_a");
-        if ($("#diyBtn_" + treeNode.id).length > 0) return;
-        var editStr = "<span id='diyBtn_space_" + treeNode.id + "' > </span>"
-            + "<button type='button' class='diyBtn1' id='diyBtn_" + treeNode.id
-            + "' title='" + treeNode.name + "' onfocus='this.blur();'></button>";
-        aObj.append(editStr);
-        var btn = $("#diyBtn_" + treeNode.id);
-        if (btn) btn.bind("click", function () {
-            alert("diy Button for " + treeNode.name);
-        });
-    };
-    //
-    function removeHoverDom(treeId, treeNode) {
-        $("#diyBtn_" + treeNode.id).unbind().remove();
-        $("#diyBtn_space_" + treeNode.id).unbind().remove();
-    };
+    }
 
     $.fn.showDeptTree = function (option) {
+        if (option.url != null)
+            setting.async.url = option.url;
+        if (option.showCheckbox != null)
+            setting.check.enable = option.showCheckbox;
+        if (option.onCheckNode != null)
+            setting.callback.onCheck = option.onNodeChecked;
 
         $.fn.zTree.init(this, setting);
         return this;
