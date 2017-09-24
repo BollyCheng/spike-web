@@ -6,6 +6,7 @@ import com.bolly.spike.service.ups.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Author   : Bolly
@@ -25,6 +26,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void update(User user) {
         userMapper.update(user);
+    }
+
+    @Override
+    public List<User> list() {
+        return userMapper.list();
     }
 
 }

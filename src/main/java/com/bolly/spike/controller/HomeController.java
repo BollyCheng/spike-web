@@ -13,7 +13,7 @@ public class HomeController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String home() {
-        return "home";
+        return "redirect:/ups/user/page";
     }
 
     @RequestMapping(value = {"/demo", "/icon"}, method = RequestMethod.GET)

@@ -46,21 +46,27 @@
   <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
   <context:component-scan base-package="com.bolly.spike.controller"/>
 
+  <!-- 资源文件路径 -->
   <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/"/>
 
-  <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
-  <!--<bean id="mappingJacksonHttpMessageConverter"-->
-  <!--class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">-->
-  <!--<property name="supportedMediaTypes">-->
-  <!--<list>-->
-  <!--<value>text/html;charset=UTF-8</value>-->
-  <!--</list>-->
-  <!--</property>-->
-  <!--</bean>-->
+  <!-- 定义tiles视图解析器 -->
+  <bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+    <property name="order" value="1" />
+    <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
+  </bean>
+
+  <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+    <property name="definitions">
+      <list>
+        <value>/WEB-INF/tiles/tiles-defines.xml</value>
+      </list>
+    </property>
+  </bean>
 
   <!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
-  <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+  <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     <!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
+    <property name="order" value="2" />
     <property name="prefix" value="/WEB-INF/jsp/"/>
     <property name="suffix" value=".jsp"/>
   </bean>

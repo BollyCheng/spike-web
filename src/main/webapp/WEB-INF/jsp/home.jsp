@@ -144,6 +144,13 @@
     </div>
 </div>
 <div class="spike-footer">
+    <div class="fl">
+        <p>版权所有2017 Bolly Inc. 保留所有权利。</p>
+    </div>
+    <div class="fr">
+        <a class="contact-me" href="javascript:void(0)"><i class="icon icon-bubble"></i> 请联系我</a>
+        <a class="user-book" href="javascript:void(0)"><i class="icon icon-book"></i> 使用手册</a>
+    </div>
 </div>
 
 <div class="spike-mask"></div>
