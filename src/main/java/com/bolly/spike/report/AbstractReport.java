@@ -61,16 +61,18 @@ public abstract class AbstractReport {
      */
     public String export() throws Exception {
         generateTemporaryFilePath();
-        FileInputStream fis = new FileInputStream(templateFilePath);
-        FileOutputStream fos = new FileOutputStream(temporaryFilePath);
+        FileInputStream fis = null;
+        FileOutputStream fos = null;
         try {
+            LOGGER.info("Start export report.");
+            fis = new FileInputStream(templateFilePath);
             workbook = WorkbookFactory.create(fis);
-
             writeDataToWorkbook();
 
+            fos = new FileOutputStream(temporaryFilePath);
             workbook.write(fos);
 
-            LOGGER.info("Export report success.report path=" + temporaryFilePath);
+            LOGGER.info("Export report success.report path = " + temporaryFilePath);
             return temporaryFilePath;
         } finally {
             closeFileStream(fis);
@@ -86,6 +88,9 @@ public abstract class AbstractReport {
      * @param fileStream 文件流
      */
     private void closeFileStream(Closeable fileStream) {
+        if (fileStream == null) {
+            return;
+        }
         try {
             fileStream.close();
         } catch (IOException e) {
@@ -168,6 +173,7 @@ public abstract class AbstractReport {
         Row row = sheet.getRow(rowIndex);
         if (row == null) {
             copyRowStyle(sheet, rowIndex - 1, rowIndex);
+            row = sheet.getRow(rowIndex);
         }
         Cell cell = row.getCell(columnIndex);
         if (data instanceof String) {
