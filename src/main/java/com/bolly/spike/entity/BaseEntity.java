@@ -20,6 +20,9 @@ import java.util.Date;
  */
 public abstract class BaseEntity implements Serializable {
 
+    protected static final String DEFAULT_STRING_VALUE = "";
+    protected static final Integer DEFAULT_INT_VALUE = 0;
+
     private Long Id;//主键
 
     private User creator;//创建人

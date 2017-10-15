@@ -50,6 +50,10 @@ public class User extends BaseEntity {
         this.department = department;
     }
 
+    public String getDepartmentName() {
+        return department == null ? DEFAULT_STRING_VALUE : department.getName();
+    }
+
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
