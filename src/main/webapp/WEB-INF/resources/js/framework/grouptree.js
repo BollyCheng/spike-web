@@ -7,7 +7,7 @@
     var setting = {
         async: {
             enable: true,
-            url: "./department/list",
+            url: SPIKE_PROJECT_NAME + "/ups/department/list",
             type: "post",
             dataType: "json",
             contentType: "application/json"
