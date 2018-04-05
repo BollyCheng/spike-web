@@ -1,6 +1,6 @@
-package com.bolly.spike.entity;
+package com.bolly.spike.model.entity;
 
-import com.bolly.spike.entity.ups.User;
+import com.bolly.spike.model.entity.ups.User;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;

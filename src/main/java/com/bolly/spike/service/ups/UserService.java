@@ -1,6 +1,6 @@
 package com.bolly.spike.service.ups;
 
-import com.bolly.spike.entity.ups.User;
+import com.bolly.spike.model.entity.ups.User;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.bolly.spike.mapper.ups;
 
-import com.bolly.spike.entity.ups.Department;
+import com.bolly.spike.model.entity.ups.Department;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

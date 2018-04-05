@@ -1,6 +1,6 @@
 package com.bolly.spike.service.ups.impl;
 
-import com.bolly.spike.entity.ups.User;
+import com.bolly.spike.model.entity.ups.User;
 import com.bolly.spike.mapper.ups.UserMapper;
 import com.bolly.spike.service.ups.UserService;
 import org.springframework.stereotype.Service;

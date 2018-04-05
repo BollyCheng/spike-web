@@ -1,6 +1,6 @@
-package com.bolly.spike.entity.its;
+package com.bolly.spike.model.entity.its;
 
-import com.bolly.spike.entity.BaseEntity;
+import com.bolly.spike.model.entity.BaseEntity;
 
 /**
  * 问题分类

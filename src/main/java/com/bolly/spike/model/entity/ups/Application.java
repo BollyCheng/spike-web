@@ -1,6 +1,6 @@
-package com.bolly.spike.entity.ups;
+package com.bolly.spike.model.entity.ups;
 
-import com.bolly.spike.entity.BaseEntity;
+import com.bolly.spike.model.entity.BaseEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**

@@ -1,6 +1,6 @@
 package com.bolly.spike.report.ups;
 
-import com.bolly.spike.entity.ups.User;
+import com.bolly.spike.model.entity.ups.User;
 import com.bolly.spike.report.AbstractReport;
 import com.bolly.spike.service.ups.UserService;
 import com.bolly.spike.util.ApplicationUtils;

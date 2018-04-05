@@ -1,6 +1,6 @@
 package com.bolly.spike.controller.ups;
 
-import com.bolly.spike.entity.ups.Department;
+import com.bolly.spike.model.entity.ups.Department;
 import com.bolly.spike.service.ups.DepartmentService;
 import org.springframework.web.bind.annotation.*;
 

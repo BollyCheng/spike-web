@@ -1,6 +1,6 @@
 package com.bolly.spike.service.ups.impl;
 
-import com.bolly.spike.entity.ups.Department;
+import com.bolly.spike.model.entity.ups.Department;
 import com.bolly.spike.mapper.ups.DepartmentMapper;
 import com.bolly.spike.service.ups.DepartmentService;
 import org.springframework.stereotype.Service;
