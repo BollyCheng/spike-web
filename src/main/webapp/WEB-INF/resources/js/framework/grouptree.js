@@ -1,4 +1,5 @@
 /**
+ * 部门组织树形结构
  * Author   : Bolly
  * CreateAt : 2017/07/08 22:06:21
  */
@@ -53,14 +54,12 @@
         callback: {
             onAsyncError: null,//异步加载出现异常错误的事件回调函数
             onAsyncSuccess: null,//异步加载正常结束的事件回调函数
-            onCheck: treeNodeChecked //捕获 checkbox被勾选 或 取消勾选的事件回调函数
+            onSelected: null,//捕获节点被点击的事件回调函数
+            onCollapse: null,//捕获节点被折叠的事件回调函数
+            onExpand: null,//捕获节点被展开的事件回调函数
+            onCheck: null //捕获 checkbox被勾选 或 取消勾选的事件回调函数
         }
     };
-
-    //选中事件
-    function treeNodeChecked(event, treeId, treeNode) {
-        console.log(treeNode.tId + ", " + treeNode.name + "," + treeNode.checked);
-    }
 
     //用户自定义控件
     function addDiyDom(treeId, treeNode) {
@@ -78,13 +77,26 @@
 
     $.fn.showDeptTree = function (option) {
         if (option != null) {
-            if (option.url != null) {
-                setting.async.url = option.url;
+            if (option.checkbox == "enabled") {
+                setting.check.enable = true;
+                setting.check.chkStyle = "checkbox";
+                setting.check.chkboxType = {"Y": "", "N": ""};
+            } else {
+                setting.check.enable = false;
             }
-            if (option.showCheckbox != null) {
-                setting.check.enable = option.showCheckbox;
+            if (option.beforeAsync != null) {
+                setting.callback.beforeAsync = option.beforeAsync;
             }
-            if (option.onCheckNode != null) {
+            if (option.onAsyncError != null) {
+                setting.callback.onAsyncError = option.onAsyncError;
+            }
+            if (option.onAsyncSuccess != null) {
+                setting.callback.onAsyncSuccess = option.onAsyncSuccess;
+            }
+            if (option.onNodeClick != null) {
+                setting.callback.onClick = option.onNodeClick;
+            }
+            if (option.onNodeChecked != null) {
                 setting.callback.onCheck = option.onNodeChecked;
             }
         }

@@ -51,7 +51,34 @@
 <script type="text/javascript">
 
     $(function () {
-        $("#groupTree").showDeptTree(null);
+        var option = {
+            checkbox: "disabled",
+            //加载数据前执行
+            beforeAsync: function (treeId, treeNode) {
+                showLoadingMask($("#" + treeId).parent());
+            },
+            //加载失败的事件
+            onAsyncError: function (event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
+                console.log(treeId + ", " + treeNode + "," + XMLHttpRequest + "," + textStatus + "," + errorThrown);
+            },
+            //加载成功的事件
+            onAsyncSuccess: function (event, treeId, treeNode, msg) {
+                console.log("Load " + treeId + " success.");
+                hideMask($("#" + treeId).parent());
+                var treeObj = $.fn.zTree.getZTreeObj(treeId);
+                treeObj.expandAll(true);//展开所有节点
+                var nodes = treeObj.getNodes();
+                if (nodes.length > 0) {
+                    treeObj.selectNode(nodes[0]); //选中第一个节点
+                    treeObj.setting.callback.onClick(null, treeId, nodes[0]); //模拟点击事件
+                }
+            },
+            //节点选中事件
+            onNodeClick: function (event, treeId, treeNode) {
+                console.log(treeNode.tId + ", " + treeNode.name + "," + treeNode.checked);
+            }
+        };
+        $("#groupTree").showDeptTree(option);
     });
 
 </script>

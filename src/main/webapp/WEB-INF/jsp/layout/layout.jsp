@@ -22,17 +22,6 @@
 </div>
 <tiles:insertAttribute name="footer"/>
 
-<div class="spike-mask"></div>
-<div class="spike-mask-msg">
-    <div class="wave-wrapper">
-        <div class="w-rect rect1"></div>
-        <div class="w-rect rect2"></div>
-        <div class="w-rect rect3"></div>
-        <div class="w-rect rect4"></div>
-        <div class="w-rect rect5"></div>
-    </div>
-</div>
-
 </body>
 </html>
 

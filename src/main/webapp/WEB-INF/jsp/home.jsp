@@ -27,7 +27,7 @@
     <script type="text/javascript" src="<spring:url value="/resources/js/framework/grouptree.js" /> "></script>
 
 </head>
-<body>
+<body id="spike-body">
 
 <div class="spike-header">
     <div class="spike-header-container">

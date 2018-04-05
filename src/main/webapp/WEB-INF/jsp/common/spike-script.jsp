@@ -17,6 +17,7 @@
 <script type="text/javascript" src="<spring:url value="/resources/js/jquery.ztree.core.js" />"></script>
 <script type="text/javascript" src="<spring:url value="/resources/js/jquery.ztree.excheck.js" />"></script>
 <script type="text/javascript" src="<spring:url value="/resources/js/framework/const.js" />"></script>
+<script type="text/javascript" src="<spring:url value="/resources/js/framework/framework.js" />"></script>
 <script type="text/javascript" src="<spring:url value="/resources/js/framework/grouptree.js" /> "></script>
 
 <script type="text/javascript">
