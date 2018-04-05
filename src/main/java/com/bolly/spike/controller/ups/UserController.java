@@ -1,6 +1,6 @@
 package com.bolly.spike.controller.ups;
 
-import com.bolly.spike.entity.ups.User;
+import com.bolly.spike.model.entity.ups.User;
 import com.bolly.spike.service.ups.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -3,7 +3,7 @@
 <configuration>
 
     <typeAliases>
-        <package name="com.bolly.spike.entity" />
+        <package name="com.bolly.spike.model.entity" />
     </typeAliases>
 
     <!-- 暂时不需要其他配置-->

@@ -20,29 +20,9 @@
             <ul id="groupTree" class="ztree"></ul>
         </div>
         <div class="spike-user-table">
-            <table id="userTable" class="table">
-                <thead>
-                <tr>
-                    <th width="10%">工号</th>
-                    <th width="10%">姓名</th>
-                    <th width="20%">部门</th>
-                    <th width="10%">创建人</th>
-                    <th width="20%">创建时间</th>
-                    <th width="10%">更新人</th>
-                    <th width="20%">更新时间</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td rowspan="7">没有数据</td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                    <td rowspan="7">分页</td>
-                </tr>
-                </tfoot>
-            </table>
+            <div class="spike-user-table-content">
+                <table id="userTable"></table>
+            </div>
         </div>
     </div>
 </div>
@@ -60,6 +40,7 @@
             //加载失败的事件
             onAsyncError: function (event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
                 console.log(treeId + ", " + treeNode + "," + XMLHttpRequest + "," + textStatus + "," + errorThrown);
+                hideMask($("#" + treeId).parent());
             },
             //加载成功的事件
             onAsyncSuccess: function (event, treeId, treeNode, msg) {
@@ -76,10 +57,52 @@
             //节点选中事件
             onNodeClick: function (event, treeId, treeNode) {
                 console.log(treeNode.tId + ", " + treeNode.name + "," + treeNode.checked);
+                loadUsersByDepartment(treeNode.id);
             }
         };
         $("#groupTree").showDeptTree(option);
     });
+
+    function loadUsersByDepartment(departmentId) {
+        $("#userTable").datagrid({
+            width: "100%",
+            height: "100%",
+            rownumbers: true,
+            url: SPIKE_PROJECT_NAME + "/ups/user/list",
+            columns: [[
+                {field: 'username', title: '工号', width: 100},
+                {field: 'name', title: '姓名', width: 100},
+                {field: 'nickname', title: '昵称', width: 100},
+                {field: 'sex', title: '性别', width: 100},
+                {field: 'email', title: '邮箱', width: 200},
+                {field: 'hireDate', title: '入职日期', width: 100},
+                {field: 'departmentName', title: '部门', width: 150}
+            ]],
+            pagination: true
+        });
+//        $.ajax({
+//            url: SPIKE_PROJECT_NAME + "/ups/user/list",
+//            type: "post",
+//            contentType: "application/x-www-form-urlencoded",
+//            data: {departmentId: departmentId},
+//            dataType: "json",
+//            beforeSend: function () {
+//                showLoadingMask($("#userTable").parent());
+//            },
+//            dataFilter: function (data) {
+//                return data;
+//            },
+//            complete: function () {
+//                hideMask($("#userTable").parent());
+//            },
+//            success: function (data, textStatus) {
+//                console.log("Load users success.");
+//            },
+//            error: function (XMLHttpRequest, textStatus, errorThrown) {
+//                console.log("Load users failed.");
+//            }
+//        });
+    }
 
 </script>
 

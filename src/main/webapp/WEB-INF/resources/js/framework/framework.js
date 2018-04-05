@@ -12,6 +12,7 @@ function showLoadingMask(dim) {
     if (dim == null) {
         dim = $("#spike-body");
     }
+    hideMask(dim);//对于同一个组件，同一时间只允许有一个模态框
     $("<div>").addClass("spike-mask");
     var divMask = $("<div>").addClass("spike-mask");
     var divMaskAnimation = $("<div>").addClass("spike-mask-animation");

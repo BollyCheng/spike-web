@@ -1,38 +1,65 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bolly.spike.mapper.ups.UserMapper">
 
-    <resultMap type="User" id="userMap" autoMapping="true">
-        <id column="f_id" property="id"/>
-        <result column="f_username" property="username"/>
-        <result column="f_password" property="password"/>
-        <result column="f_nickname" property="nickname"/>
-    </resultMap>
+  <resultMap type="User" id="userMap" autoMapping="true">
+    <id column="f_id" property="id"/>
+    <result column="f_username" property="username"/>
+    <result column="f_password" property="password"/>
+    <result column="f_nickname" property="nickname"/>
+    <result column="f_name" property="name"/>
+    <result column="f_sex" property="sex"/>
+    <result column="f_email" property="email"/>
+    <result column="f_birthday" property="birthday"/>
+    <result column="f_hireDate" property="hireDate"/>
+    <result column="f_leaveDate" property="leaveDate"/>
+    <result column="f_state" property="state"/>
+    <association javaType="Department" property="department" columnPrefix="td_">
+      <result column="f_id" property="id"/>
+      <result column="f_name" property="name"/>
+    </association>
+  </resultMap>
 
-    <insert id="insert">
-        INSERT INTO t_user (
-          f_id, f_username, f_password, f_nickname, f_department_id, f_create_by, f_create_at
-        ) VALUES (
-          #{id}, #{username}, #{password}, #{nickname}, #{department.id}, #{creator.id}, sysdate()
-        )
-    </insert>
+  <insert id="insert">
+    INSERT INTO t_user (
+      f_id, f_username, f_password, f_nickname, f_department_id, f_create_by, f_create_at
+    ) VALUES (
+      #{id}, #{username}, #{password}, #{nickname}, #{department.id}, #{creator.id}, sysdate()
+    )
+  </insert>
 
-    <select id="loadById" resultMap="userMap" parameterType="java.lang.Long">
-        SELECT *
-        FROM t_user
-        WHERE f_id=#{id}
-    </select>
+  <sql id="commonSearch">
+    SELECT
+      tu.f_username,
+      tu.f_name,
+      tu.f_nickname,
+      tu.f_sex,
+      tu.f_email,
+      tu.f_birthday,
+      tu.f_hire_date,
+      tu.f_leave_date,
+      tu.f_state,
+      tu.f_create_at,
+      tu.f_last_edit_at,
+      td.f_id   AS td_f_id,
+      td.f_name AS td_f_name
+    FROM t_user tu
+      LEFT JOIN t_department td ON td.f_id = tu.f_department_id
+  </sql>
 
-    <select id="loadByUsername" resultMap="userMap" parameterType="java.lang.String">
-        SELECT *
-        FROM t_user
-        WHERE f_username=#{username}
-    </select>
+  <select id="loadById" resultMap="userMap" parameterType="java.lang.Long">
+    <include refid="commonSearch"/>
+    WHERE tu.f_id = #{id}
+  </select>
 
-    <select id="list" resultMap="userMap">
-        SELECT *
-        FROM t_user
-    </select>
+  <select id="loadByUsername" resultMap="userMap" parameterType="java.lang.String">
+    <include refid="commonSearch"/>
+    WHERE tu.f_username = #{username}
+  </select>
+
+  <select id="list" resultMap="userMap">
+    <include refid="commonSearch"/>
+  </select>
 
 </mapper>
