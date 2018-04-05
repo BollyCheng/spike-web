@@ -5,6 +5,8 @@ import com.bolly.spike.report.AbstractReport;
 import com.bolly.spike.service.ups.UserService;
 import com.bolly.spike.util.ApplicationUtils;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,6 +18,8 @@ import java.util.List;
  */
 @Service
 public class UserReport extends AbstractReport {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserReport.class);
 
     @Resource(name = "userService")
     private UserService userService;
@@ -40,10 +44,13 @@ public class UserReport extends AbstractReport {
 
     @Override
     protected void writeDataToWorkbook() {
+        LOGGER.info("Start export user report.");
         exportUserSheet();
+        LOGGER.info("End of export user report.");
     }
 
     private void exportUserSheet() {
+        LOGGER.info("Start export user sheet.");
         Sheet sheet = workbook.getSheetAt(0);
 
         List<User> users = userService.list();
@@ -53,6 +60,7 @@ public class UserReport extends AbstractReport {
             writeCellData(sheet, rowIndex, NAME_COLUMN_INDEX, user.getNickname());
             writeCellData(sheet, rowIndex, DEPT_COLUMN_INDEX, user.getDepartmentName());
         }
+        LOGGER.info("End of export user report");
     }
 
 }
