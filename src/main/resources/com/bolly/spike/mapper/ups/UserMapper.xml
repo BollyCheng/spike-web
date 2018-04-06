@@ -11,9 +11,9 @@
     <result column="f_name" property="name"/>
     <result column="f_sex" property="sex"/>
     <result column="f_email" property="email"/>
-    <result column="f_birthday" property="birthday"/>
-    <result column="f_hireDate" property="hireDate"/>
-    <result column="f_leaveDate" property="leaveDate"/>
+    <result column="f_birthday" property="birthday" javaType="Date"/>
+    <result column="f_hire_date" property="hireDate" javaType="Date"/>
+    <result column="f_leave_date" property="leaveDate" javaType="Date"/>
     <result column="f_state" property="state"/>
     <association javaType="Department" property="department" columnPrefix="td_">
       <result column="f_id" property="id"/>

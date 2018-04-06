@@ -31,45 +31,52 @@
 <script type="text/javascript">
 
     $(function () {
-        var option = {
-            checkbox: "disabled",
-            //加载数据前执行
-            beforeAsync: function (treeId, treeNode) {
-                showLoadingMask($("#" + treeId).parent());
-            },
-            //加载失败的事件
-            onAsyncError: function (event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
-                console.log(treeId + ", " + treeNode + "," + XMLHttpRequest + "," + textStatus + "," + errorThrown);
-                hideMask($("#" + treeId).parent());
-            },
-            //加载成功的事件
-            onAsyncSuccess: function (event, treeId, treeNode, msg) {
-                console.log("Load " + treeId + " success.");
-                hideMask($("#" + treeId).parent());
-                var treeObj = $.fn.zTree.getZTreeObj(treeId);
-                treeObj.expandAll(true);//展开所有节点
-                var nodes = treeObj.getNodes();
-                if (nodes.length > 0) {
-                    treeObj.selectNode(nodes[0]); //选中第一个节点
-                    treeObj.setting.callback.onClick(null, treeId, nodes[0]); //模拟点击事件
-                }
-            },
-            //节点选中事件
-            onNodeClick: function (event, treeId, treeNode) {
-                console.log(treeNode.tId + ", " + treeNode.name + "," + treeNode.checked);
-                loadUsersByDepartment(treeNode.id);
-            }
-        };
-        $("#groupTree").showDeptTree(option);
+        //加载部门信息
+        loadDepartments();
+        //加载人员信息
+        loadUsers();
     });
 
-    function loadUsersByDepartment(departmentId) {
+    var deptTreeOption = {
+        checkbox: "disabled",
+        //加载数据前执行
+        beforeAsync: function (treeId, treeNode) {
+            showLoadingMask($("#" + treeId).parent());
+        },
+        //加载失败的事件
+        onAsyncError: function (event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
+            console.error(treeId + ", " + treeNode + "," + XMLHttpRequest + "," + textStatus + "," + errorThrown);
+            hideMask($("#" + treeId).parent());
+        },
+        //加载成功的事件
+        onAsyncSuccess: function (event, treeId, treeNode, msg) {
+            hideMask($("#" + treeId).parent());
+            var treeObj = $.fn.zTree.getZTreeObj(treeId);
+            treeObj.expandAll(true);//展开所有节点
+            var nodes = treeObj.getNodes();
+            if (nodes.length > 0) {
+                treeObj.selectNode(nodes[0]); //选中第一个节点
+            }
+        },
+        //节点点击事件
+        onNodeClick: function (event, treeId, treeNode) {
+            reloadUsers();
+        }
+    };
+
+    function loadDepartments() {
+        $("#groupTree").showDeptTree(deptTreeOption);
+    }
+
+    function loadUsers() {
         $("#userTable").datagrid({
-            width: "100%",
-            height: "100%",
+            fit: true,
             rownumbers: true,
             url: SPIKE_PROJECT_NAME + "/ups/user/list",
+            method: "post",
+            singleSelect: true,
             columns: [[
+                {field: 'id', hidden: true},
                 {field: 'username', title: '工号', width: 100},
                 {field: 'name', title: '姓名', width: 100},
                 {field: 'nickname', title: '昵称', width: 100},
@@ -78,30 +85,41 @@
                 {field: 'hireDate', title: '入职日期', width: 100},
                 {field: 'departmentName', title: '部门', width: 150}
             ]],
-            pagination: true
+            pagination: true,
+            pageSize: 20,
+            pageList: [10, 20, 50, 100],
+            loadFilter: userFilter
         });
-//        $.ajax({
-//            url: SPIKE_PROJECT_NAME + "/ups/user/list",
-//            type: "post",
-//            contentType: "application/x-www-form-urlencoded",
-//            data: {departmentId: departmentId},
-//            dataType: "json",
-//            beforeSend: function () {
-//                showLoadingMask($("#userTable").parent());
-//            },
-//            dataFilter: function (data) {
-//                return data;
-//            },
-//            complete: function () {
-//                hideMask($("#userTable").parent());
-//            },
-//            success: function (data, textStatus) {
-//                console.log("Load users success.");
-//            },
-//            error: function (XMLHttpRequest, textStatus, errorThrown) {
-//                console.log("Load users failed.");
-//            }
-//        });
+    }
+
+    function reloadUsers() {
+        $('#userTable').datagrid('reload');    // 重新载入当前页面数据
+    }
+
+    function userFilter(users) {
+        if (users == null || users.length == 0) {
+            return {total: 0, rows: []};
+        }
+        var deptTreeObj = $.fn.zTree.getZTreeObj("groupTree");
+        var selectedNodes = deptTreeObj.getSelectedNodes();
+        if (selectedNodes == null || selectedNodes.length == 0) {
+            return {total: users.length, rows: users};
+        }
+        if (selectedNodes.length > 1) {
+            console.warn("Selected multiple departments. Only show the first department's data.");
+        }
+        var selectDeptId = selectedNodes[0].id;
+        var rows = [];
+        for (var i = 0; i < users.length; i++) {
+            var user = users[i];
+            if (user.department.id == selectDeptId) {
+                rows.push(user);
+            }
+        }
+        return {
+            total: rows.length,
+            rows: rows
+        };
     }
 
 </script>

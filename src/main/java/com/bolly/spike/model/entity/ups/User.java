@@ -1,5 +1,6 @@
 package com.bolly.spike.model.entity.ups;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.bolly.spike.model.entity.BaseEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -18,8 +19,11 @@ public class User extends BaseEntity {
     private String name;//姓名
     private String sex;//性别
     private String email;//邮箱
+    @JSONField(format = "yyyy-MM-dd")
     private Date birthday;//生日
+    @JSONField(format = "yyyy-MM-dd")
     private Date hireDate;//入职日期
+    @JSONField(format = "yyyy-MM-dd")
     private Date leaveDate;//离职日期
     private String state;//状态
     private Department department;//所属部门
