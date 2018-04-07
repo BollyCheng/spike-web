@@ -70,11 +70,7 @@
 
     function loadUsers() {
         $("#userTable").datagrid({
-            fit: true,
-            rownumbers: true,
             url: SPIKE_PROJECT_NAME + "/ups/user/list",
-            method: "post",
-            singleSelect: true,
             columns: [[
                 {field: 'id', hidden: true},
                 {field: 'username', title: '工号', width: 100},
@@ -85,9 +81,6 @@
                 {field: 'hireDate', title: '入职日期', width: 100},
                 {field: 'departmentName', title: '部门', width: 150}
             ]],
-            pagination: true,
-            pageSize: 20,
-            pageList: [10, 20, 50, 100],
             loadFilter: userFilter
         });
     }
