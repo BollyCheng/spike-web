@@ -60,12 +60,20 @@ public class Module extends BaseEntity {
         this.application = application;
     }
 
+    public String getApplicationName() {
+        return application == null ? DEFAULT_STRING_VALUE : application.getName();
+    }
+
     public Module getParent() {
         return parent;
     }
 
     public void setParent(Module parent) {
         this.parent = parent;
+    }
+
+    public String getParentModuleName() {
+        return parent == null ? DEFAULT_STRING_VALUE : parent.getName();
     }
 
     @Override

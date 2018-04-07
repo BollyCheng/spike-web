@@ -1,0 +1,39 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bolly.spike.mapper.ups.ModuleMapper">
+
+  <resultMap type="Module" id="moduleMap">
+    <id column="f_id" property="id"/>
+    <result column="f_name" property="name"/>
+    <result column="f_url" property="url"/>
+    <association property="application" javaType="Application" columnPrefix="ta_">
+      <id column="f_id" property="id"/>
+      <result column="f_name" property="name"/>
+    </association>
+    <association property="parent" javaType="module" columnPrefix="ptm_">
+      <id column="f_id" property="id"/>
+      <result column="f_name" property="name"/>
+    </association>
+  </resultMap>
+
+
+  <sql id="common-search">
+    SELECT
+      tm.f_id,
+      tm.f_name,
+      tm.f_url,
+      ta.f_id    AS ta_f_id,
+      ta.f_name  AS ta_f_name,
+      ptm.f_id   AS ptm_f_id,
+      ptm.f_name AS ptm_f_name
+    FROM t_module tm
+      LEFT JOIN t_application ta ON tm.f_application_id = ta.f_id
+      LEFT JOIN t_module ptm ON tm.f_parent_id = ptm.f_id
+  </sql>
+
+  <select id="list" resultMap="moduleMap">
+    <include refid="common-search"/>
+  </select>
+
+</mapper>

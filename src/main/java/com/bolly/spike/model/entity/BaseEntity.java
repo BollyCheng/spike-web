@@ -23,7 +23,7 @@ public abstract class BaseEntity implements Serializable {
     protected static final String DEFAULT_STRING_VALUE = "";
     protected static final Integer DEFAULT_INT_VALUE = 0;
 
-    private Long Id;//主键
+    private Long id;//主键
 
     private User creator;//创建人
     private Date createAt;//创建时间
@@ -31,11 +31,11 @@ public abstract class BaseEntity implements Serializable {
     private Date lastEditAt;//最后更新时间
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public User getCreator() {
