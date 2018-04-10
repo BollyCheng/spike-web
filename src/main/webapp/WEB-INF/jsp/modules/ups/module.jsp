@@ -19,14 +19,8 @@
         </div>
     </div>
     <div class="spike-content-main">
-        <div class="spike-application-list">
-            <ul id="applicationList" class="easyui-tree"></ul>
-        </div>
-        <div class="spike-module-table">
-            <div class="spike-module-table-content">
-                <table id="moduleTable"></table>
-            </div>
-        </div>
+        <div id="applicationTabs"></div>
+        <div id="moduleTreeTable"></div>
     </div>
 </div>
 
