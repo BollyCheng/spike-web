@@ -45,13 +45,13 @@ function loadUsers() {
         url: SPIKE_PROJECT_NAME + "/ups/user/list",
         columns: [[
             {field: 'id', hidden: true},
-            {field: 'username', title: '工号', width: 100},
-            {field: 'name', title: '姓名', width: 100},
-            {field: 'nickname', title: '昵称', width: 100},
-            {field: 'sex', title: '性别', width: 100},
-            {field: 'email', title: '邮箱', width: 200},
-            {field: 'hireDate', title: '入职日期', width: 100},
-            {field: 'departmentName', title: '部门', width: 150}
+            {field: 'username', title: $.i18n.prop('web.modules.ups.user.userTable.columns.username'), width: 100},
+            {field: 'name', title: $.i18n.prop('web.modules.ups.user.userTable.columns.name'), width: 100},
+            {field: 'nickname', title: $.i18n.prop('web.modules.ups.user.userTable.columns.nickname'), width: 100},
+            {field: 'sex', title: $.i18n.prop('web.modules.ups.user.userTable.columns.sex'), width: 100},
+            {field: 'email', title: $.i18n.prop('web.modules.ups.user.userTable.columns.email'), width: 200},
+            {field: 'hireDate', title: $.i18n.prop('web.modules.ups.user.userTable.columns.hireDate'), width: 100},
+            {field: 'departmentName', title: $.i18n.prop('web.modules.ups.user.userTable.columns.department'), width: 150}
         ]],
         loadFilter: userFilter
     });

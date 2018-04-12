@@ -14,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/metroStyle.css" />">
 
 <script type="text/javascript" src="<spring:url value='/resources/js/jquery.js' />"></script>
+<script type="text/javascript" src="<spring:url value='/resources/js/jquery.i18n.properties.js' />"></script>
 <script type="text/javascript" src="<spring:url value="/resources/js/framework/sidebar.js" /> "></script>
 <script type="text/javascript" src="<spring:url value="/resources/js/jquery.ztree.core.js" />"></script>
 <script type="text/javascript" src="<spring:url value="/resources/js/jquery.ztree.excheck.js" />"></script>
@@ -24,6 +25,9 @@
 <script type="text/javascript" src="<spring:url value="/resources/js/framework/grouptree.js" /> "></script>
 
 <script type="text/javascript">
+
+    <!-- 语言 -->
+    var LOCALE_LANGUAGE = "${pageContext.response.locale }";
 
     $(function () {
         $("#sidebar-menu").sidebarMenu();

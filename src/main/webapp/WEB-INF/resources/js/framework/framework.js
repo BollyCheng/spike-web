@@ -3,6 +3,20 @@
  * Author   : Bolly
  * CreateAt : 2018/04/05 11:49:16
  */
+$(function () {
+    jQuery.i18n.properties({
+        name: "message",//资源文件名称
+        path: SPIKE_PROJECT_NAME + "/resources/i18n/", //资源文件路径
+        mode: 'map', //用Map的方式使用资源文件中的值
+        language: LOCALE_LANGUAGE,
+        cache: true, //指定浏览器是否对资源文件进行缓存,默认false
+        encoding: 'UTF-8', //加载资源文件时使用的编码。默认为 UTF-8。
+        callback: function () {//加载成功后设置显示内容
+            //以下是将要国际化的文字内容
+            //console.log($.i18n.prop('web.modules.ups.user.title'));
+        }
+    });
+});
 
 /**
  * 显示加载中的模态框
@@ -23,7 +37,7 @@ function showLoadingMask(dim) {
         var divRect = $("<div>").addClass("w-rect").addClass("rect" + i);
         divWaveWrapper.append(divRect);
     }
-    dim.css("position","relative");
+    dim.css("position", "relative");
     dim.append(divMask).append(divMaskAnimation).append(divMaskMsg);
 }
 

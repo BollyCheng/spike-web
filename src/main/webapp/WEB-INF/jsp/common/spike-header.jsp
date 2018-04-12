@@ -3,6 +3,7 @@
   CreatAt : 2017/9/24 13:52
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <div class="spike-header">
     <div class="spike-header-container">
         <div class="spike-brands">
@@ -12,6 +13,9 @@
             </a>
         </div>
         <div class="spike-user">
+            Language:
+            <a href="?lang=zh_CN"><spring:message code="language.cn"/></a>
+            <a href="?lang=en_US"><spring:message code="language.en"/></a>
             <a href="#">成响林</a>
             <a href="#" class="btn-group">
                 <i class="icon icon-user"></i>

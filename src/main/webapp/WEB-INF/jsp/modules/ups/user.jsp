@@ -8,11 +8,19 @@
 <div class="spike-content">
     <div class="spike-content-header">
         <div class="spike-content-header-breadcrumb">
-            <label class="spike-content-header-title">部门&用户管理</label>
+            <label class="spike-content-header-title">
+                <spring:message code="web.modules.ups.user.title" />
+            </label>
         </div>
         <div class="spike-content-header-search">
-            <a href="javascript:void(0)"><i class="icon icon-plus"></i> 新增部门</a>
-            <a href="javascript:void(0)"><i class="icon icon-user-plus"></i> 新增员工</a>
+            <a href="javascript:void(0)">
+                <i class="icon icon-plus"></i>
+                <spring:message code="web.modules.ups.user.operation.newDepartment" />
+            </a>
+            <a href="javascript:void(0)">
+                <i class="icon icon-user-plus"></i>
+                <spring:message code="web.modules.ups.user.operation.newUser" />
+            </a>
         </div>
     </div>
     <div class="spike-content-main">

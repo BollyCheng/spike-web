@@ -3,6 +3,7 @@
  * Author   : Bolly
  * CreateAt : 2018/04/05 10:27:16
  */
+
 //当前网址，如： http://localhost:8088/spike/home.jsp
 var SPIKE_CURRENT_PATH = window.document.location.href;
 //主机地址之后的目录，如： spike/home.jsp

@@ -52,8 +52,8 @@
 
   <!-- 定义tiles视图解析器 -->
   <bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-    <property name="order" value="1" />
-    <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
+    <property name="order" value="1"/>
+    <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
   </bean>
 
   <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
@@ -67,7 +67,7 @@
   <!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     <!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
-    <property name="order" value="2" />
+    <property name="order" value="2"/>
     <property name="prefix" value="/WEB-INF/jsp/"/>
     <property name="suffix" value=".jsp"/>
   </bean>
@@ -81,5 +81,29 @@
     <!-- 内存中的最大值 -->
     <property name="maxInMemorySize" value="40960"/>
   </bean>
+
+
+  <!-- 国际化资源文件 -->
+  <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    <!-- 表示多语言配置文件在根路径下，以language开头的文件-->
+    <property name="basenames">
+      <list>
+        <value>/WEB-INF/resources/i18n/message</value>
+      </list>
+    </property>
+  </bean>
+  <!-- 国际化拦截器 -->
+  <mvc:interceptors>
+    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+      <property name="paramName" value="lang"/>
+    </bean>
+  </mvc:interceptors>
+  <!-- 使用Cookie存储国际化的资料 -->
+  <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+    <property name="cookieName" value="Language"/>
+    <property name="cookieMaxAge" value="604800"/>
+    <property name="defaultLocale" value="zh_CN"/>
+  </bean>
+
 
 </beans>
