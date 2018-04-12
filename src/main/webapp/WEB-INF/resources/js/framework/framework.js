@@ -53,3 +53,11 @@ function hideMask(dim) {
     dim.find(".spike-mask-animation").remove();
     dim.find(".spike-mask-msg").remove();
 }
+
+function openEasyuiDialog(dlgId) {
+    $("#" + dlgId).dialog("open");
+}
+
+function closeEasyuiDialog(dlgId) {
+    $("#" + dlgId).dialog("close");
+}

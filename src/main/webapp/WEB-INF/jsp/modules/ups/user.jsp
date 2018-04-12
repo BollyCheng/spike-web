@@ -9,17 +9,17 @@
     <div class="spike-content-header">
         <div class="spike-content-header-breadcrumb">
             <label class="spike-content-header-title">
-                <spring:message code="web.modules.ups.user.title" />
+                <spring:message code="web.modules.ups.user.title"/>
             </label>
         </div>
         <div class="spike-content-header-search">
-            <a href="javascript:void(0)">
+            <a id="btnNewDept" href="javascript:void(0)">
                 <i class="icon icon-plus"></i>
-                <spring:message code="web.modules.ups.user.operation.newDepartment" />
+                <spring:message code="web.modules.ups.user.operation.newDepartment"/>
             </a>
-            <a href="javascript:void(0)">
+            <a id="btnNewUser" href="javascript:void(0)">
                 <i class="icon icon-user-plus"></i>
-                <spring:message code="web.modules.ups.user.operation.newUser" />
+                <spring:message code="web.modules.ups.user.operation.newUser"/>
             </a>
         </div>
     </div>
@@ -33,6 +33,14 @@
             </div>
         </div>
     </div>
+</div>
+
+<div id="dlgNewDept" class="easyui-dialog" title="新建部门" style="display: none; width: 400px;height: auto">
+    1234
+</div>
+
+<div id="dlgNewUser" class="easyui-dialog" title="新建用户" style="display: none; width: 400px;height: auto">
+    1234
 </div>
 
 <script type="text/javascript" src="<spring:url value="/resources/js/module/ups/user.js" /> "></script>

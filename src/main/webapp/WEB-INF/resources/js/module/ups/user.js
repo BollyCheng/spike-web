@@ -3,11 +3,32 @@
  * CreateAt : 2018/04/07 21:27:17
  */
 $(function () {
+    //初始化页面事件
+    initPageEvent();
     //加载部门信息
     loadDepartments();
     //加载人员信息
     loadUsers();
 });
+
+function initPageEvent() {
+    // 绑定新增部门事件
+    $("#btnNewDept").unbind("click").bind("click", openNewDeptDialog);
+    // 绑定新增用户事件
+    $("#btnNewUser").unbind("click").bind("click", openNewUserDialog);
+    // 新增部门对话框配置按钮事件
+    $("#dlgNewDept").dialog("bindButtonEvents", {
+        submit: function () {
+            console.log("submit department dialog.");
+        }
+    });
+    //新增用户对话框配置按钮事件
+    $("#dlgNewUser").dialog("bindButtonEvents", {
+        submit: function () {
+            console.log("submit user dialog.");
+        }
+    });
+}
 
 var deptTreeOption = {
     checkbox: "disabled",
@@ -51,7 +72,11 @@ function loadUsers() {
             {field: 'sex', title: $.i18n.prop('web.modules.ups.user.userTable.columns.sex'), width: 100},
             {field: 'email', title: $.i18n.prop('web.modules.ups.user.userTable.columns.email'), width: 200},
             {field: 'hireDate', title: $.i18n.prop('web.modules.ups.user.userTable.columns.hireDate'), width: 100},
-            {field: 'departmentName', title: $.i18n.prop('web.modules.ups.user.userTable.columns.department'), width: 150}
+            {
+                field: 'departmentName',
+                title: $.i18n.prop('web.modules.ups.user.userTable.columns.department'),
+                width: 150
+            }
         ]],
         loadFilter: userFilter
     });
@@ -85,4 +110,12 @@ function userFilter(users) {
         total: rows.length,
         rows: rows
     };
+}
+
+function openNewDeptDialog() {
+    openEasyuiDialog("dlgNewDept");
+}
+
+function openNewUserDialog() {
+    openEasyuiDialog("dlgNewUser");
 }
