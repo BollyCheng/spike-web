@@ -10,8 +10,55 @@ $.extend($.fn.datagrid.defaults, {
     singleSelect: true,
     pagination: true,
     pageSize: 20,
-    pageList: [10, 20, 50, 100]
+    pageList: [10, 20, 50, 100],
+    loadFilter: pagerFilter
 });
+
+function pagerFilter(data, datagrid) {
+    if (typeof data.length == 'number' && typeof data.splice == 'function') {    // 判断数据是否是数组
+        data = {
+            total: data.length,
+            rows: data
+        }
+    }
+    var dg = datagrid == null ? $(this) : $(datagrid);
+    var opts = dg.datagrid('options');
+    var pager = dg.datagrid('getPager');
+    pager.pagination({
+        onSelectPage: function (pageNum, pageSize) {
+            opts.pageNumber = pageNum;
+            opts.pageSize = pageSize;
+            pager.pagination('refresh', {
+                pageNumber: pageNum,
+                pageSize: pageSize
+            });
+            dg.datagrid('reload');
+        }
+    });
+    if (!data.originalRows) {
+        data.originalRows = (data.rows);
+    }
+    console.log(opts.pageNumber, opts.pageSize);
+    var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
+    var end = start + parseInt(opts.pageSize);
+    data.rows = (data.originalRows.slice(start, end));
+    return data;
+}
+
+/**
+ * 重新加载表格数据（前端）
+ * @param datagrid 表格对象（注意通过$('#id')的方式传递参数）
+ */
+function reloadDategridData(datagrid) {
+    //每次重新加载数据都恢复到第一页
+    var opts = $(datagrid).datagrid('options');
+    var pager = $(datagrid).datagrid('getPager');
+    opts.pageNumber = 1;
+    pager.pagination('refresh', {
+        pageNumber: opts.pageNumber
+    });
+    $(datagrid).datagrid('reload');    // 重新载入当前页面数据
+}
 
 $.extend($.fn.tabs.defaults, {
     fit: true,
@@ -56,9 +103,12 @@ $.extend($.fn.dialog.defaults, {
     border: "true", //定义窗体边框的样式。可用值：true，false，'thin'，'thick'
     constrain: false, //定义是否限制窗体的位置
     buttons: [
-        {text: "确认", event: "submit"},
+        // text为显示的文本，因为需要国际化，这里只给定一个默认值
+        // event，表示事件，通过bindButtonEvents绑定事件
+        // group，用于国际化，因为没有找到合适的属性赋值到按钮上
+        {text: 'Submit', event: "submit", group: "submit"},
         {
-            text: "关闭", event: "close",
+            text: 'Close', event: "close", group: "close",
             handler: function () {
                 // 关闭对话框，按照现在的格式，button会放置在对应的对话框id节点之后
                 // 特别注意：扩展close事件时，关闭对话框的事件同样会执行

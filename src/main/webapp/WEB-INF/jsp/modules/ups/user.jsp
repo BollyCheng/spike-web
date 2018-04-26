@@ -36,11 +36,45 @@
 </div>
 
 <div id="dlgNewDept" class="easyui-dialog" title="新建部门" style="display: none; width: 400px;height: auto">
-    1234
+    <form id="formNewDept" method="post">
+        <div>
+            <label>上级部门:</label>
+            <input id="txtDeptParentId" type="text"/>
+        </div>
+        <div>
+            <label>部门名称:</label>
+            <input id="txtDeptName" type="text"/>
+        </div>
+    </form>
 </div>
 
 <div id="dlgNewUser" class="easyui-dialog" title="新建用户" style="display: none; width: 400px;height: auto">
-    1234
+    <form id="formNewUser" method="post">
+        <div>
+            <label>工号：</label>
+            <input id="txtUserEmpNo" type="text"/>
+        </div>
+        <div>
+            <label>姓名：</label>
+            <input id="txtUserNameCN" type="text"/>
+        </div>
+        <div>
+            <label>昵称：</label>
+            <input id="txtUserNickName" type="text"/>
+        </div>
+        <div>
+            <label>邮箱：</label>
+            <input id="txtUserEmail" type="text"/>
+        </div>
+        <div>
+            <label>入职日期：</label>
+            <input id="txtUserHireDate" type="text" />
+        </div>
+        <div>
+            <label>部门：</label>
+            <input id="txtUserDepartment" type="text" />
+        </div>
+    </form>
 </div>
 
 <script type="text/javascript" src="<spring:url value="/resources/js/module/ups/user.js" /> "></script>

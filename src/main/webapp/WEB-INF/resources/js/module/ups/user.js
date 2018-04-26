@@ -3,6 +3,8 @@
  * CreateAt : 2018/04/07 21:27:17
  */
 $(function () {
+    //初始化页面组件信息
+    initPageComponent();
     //初始化页面事件
     initPageEvent();
     //加载部门信息
@@ -11,6 +13,40 @@ $(function () {
     loadUsers();
 });
 
+//初始化页面组件信息
+function initPageComponent() {
+    $("#txtDeptName").validatebox({
+        required: true,
+        validType: "length[1, 20]",
+        labelPosition: "right",
+        missingMessage: "请输入部门名称",
+        invalidMessage: "部门名称不能超过20个字符",
+        validateOnCreate: false,
+        validateOnBlur: true
+    });
+    $("#txtDeptParentId").combotree({
+        url: SPIKE_PROJECT_NAME + "/ups/department/list",
+        required: false,
+        editable: false,
+        id: "id",
+        text: "name",
+        loadFilter: function (departments) {
+            if (departments == null)
+                return null;
+            var rows = [];
+            for (var i = 0; i < departments.length; i++) {
+                var dept = departments[i];
+                dept._parentId = dept.parent == null ? null : dept.parent.id;
+                rows[i] = dept;
+            }
+            return rows;
+        },
+        onLoadSuccess: function (node, data) {
+        }
+    });
+}
+
+//初始化页面事件
 function initPageEvent() {
     // 绑定新增部门事件
     $("#btnNewDept").unbind("click").bind("click", openNewDeptDialog);
@@ -19,13 +55,13 @@ function initPageEvent() {
     // 新增部门对话框配置按钮事件
     $("#dlgNewDept").dialog("bindButtonEvents", {
         submit: function () {
-            console.log("submit department dialog.");
+            submitNewDepartmentDialog();
         }
     });
     //新增用户对话框配置按钮事件
     $("#dlgNewUser").dialog("bindButtonEvents", {
         submit: function () {
-            console.log("submit user dialog.");
+            submitNewUserDialog();
         }
     });
 }
@@ -83,17 +119,19 @@ function loadUsers() {
 }
 
 function reloadUsers() {
-    $('#userTable').datagrid('reload');    // 重新载入当前页面数据
+    reloadDategridData($('#userTable'));
 }
 
 function userFilter(users) {
+    var data = {total: 0, rows: []};
     if (users == null || users.length == 0) {
-        return {total: 0, rows: []};
+        return data;
     }
     var deptTreeObj = $.fn.zTree.getZTreeObj("groupTree");
     var selectedNodes = deptTreeObj.getSelectedNodes();
     if (selectedNodes == null || selectedNodes.length == 0) {
-        return {total: users.length, rows: users};
+        data = {total: users.length, rows: users};
+        return pagerFilter(data, this);
     }
     if (selectedNodes.length > 1) {
         console.warn("Selected multiple departments. Only show the first department's data.");
@@ -106,10 +144,8 @@ function userFilter(users) {
             rows.push(user);
         }
     }
-    return {
-        total: rows.length,
-        rows: rows
-    };
+    data = {total: rows.length, rows: rows};
+    return pagerFilter(data, this);
 }
 
 function openNewDeptDialog() {
@@ -118,4 +154,28 @@ function openNewDeptDialog() {
 
 function openNewUserDialog() {
     openEasyuiDialog("dlgNewUser");
+}
+
+function submitNewDepartmentDialog() {
+    $("#formNewDept").form('submit', {
+        url: SPIKE_PROJECT_NAME + "/ups/department/add",
+        onSubmit: function () {
+            var isValid = $(this).form('validate');
+            if (!isValid) {
+                console.log("validate failed.");
+                return false;
+            }
+            console.log("form submit.");
+        },
+        success: function () {
+            console.log("form submit success.")
+        },
+        error: function () {
+            console.log("form submit failed.")
+        }
+    });
+}
+
+function submitNewUserDialog() {
+    console.log("submit new user dialog");
 }
