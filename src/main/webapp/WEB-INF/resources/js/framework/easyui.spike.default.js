@@ -38,7 +38,6 @@ function pagerFilter(data, datagrid) {
     if (!data.originalRows) {
         data.originalRows = (data.rows);
     }
-    console.log(opts.pageNumber, opts.pageSize);
     var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
     var end = start + parseInt(opts.pageSize);
     data.rows = (data.originalRows.slice(start, end));
@@ -118,3 +117,21 @@ $.extend($.fn.dialog.defaults, {
     ]
 });
 
+$.extend($.fn.form.defaults, {
+    novalidate: false,
+    onSubmit: function () {
+        // 表单验证不通过，不向后台提交请求
+        var isValid = $(this).form('validate');
+        if (!isValid) {
+            return false;
+        }
+    },
+    success: function (data) {
+        var json = $.parseJSON(data);
+        if (json.result == 'success') {
+            console.warn("Success on process form data. but do nothing.");
+        } else {
+            console.error("Error on process form data. error message is %s", json.message);
+        }
+    }
+});

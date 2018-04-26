@@ -74,7 +74,7 @@ var deptTreeOption = {
     },
     //加载失败的事件
     onAsyncError: function (event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
-        console.error(treeId + ", " + treeNode + "," + XMLHttpRequest + "," + textStatus + "," + errorThrown);
+        console.error("Load department tree failed.");
         hideMask($("#" + treeId).parent());
     },
     //加载成功的事件
@@ -158,24 +158,12 @@ function openNewUserDialog() {
 
 function submitNewDepartmentDialog() {
     $("#formNewDept").form('submit', {
-        url: SPIKE_PROJECT_NAME + "/ups/department/add",
-        onSubmit: function () {
-            var isValid = $(this).form('validate');
-            if (!isValid) {
-                console.log("validate failed.");
-                return false;
-            }
-            console.log("form submit.");
-        },
-        success: function () {
-            console.log("form submit success.")
-        },
-        error: function () {
-            console.log("form submit failed.")
-        }
+        url: SPIKE_PROJECT_NAME + "/ups/department/add"
     });
 }
 
 function submitNewUserDialog() {
-    console.log("submit new user dialog");
+    $("#formNewUser").form('submit', {
+        url: SPIKE_PROJECT_NAME + "/ups/user/add"
+    });
 }

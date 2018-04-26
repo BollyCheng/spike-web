@@ -63,7 +63,6 @@
 
     //用户自定义控件
     function addDiyDom(treeId, treeNode) {
-        console.log(treeNode);
         var aObj = $("#" + treeNode.tId + "_a");
         aObj.children().remove();
 

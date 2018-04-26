@@ -23,9 +23,8 @@ public class SpikeExceptionAdvice {
 
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public String handleException(HttpServletRequest request, Exception e) {
-        LOGGER.error("Request FAILD, URL = {} ", request.getRequestURI());
+    public JSONObject handleException(HttpServletRequest request, Exception e) {
+        LOGGER.error("Request Failed, URL = {} ", request.getRequestURI());
         LOGGER.error(e.toString(), e);
 
         JSONObject jsonResult = new JSONObject();
@@ -36,7 +35,7 @@ public class SpikeExceptionAdvice {
         } else {
             jsonResult.put("message", "服务器内部错误。");
         }
-        return jsonResult.toJSONString();
+        return jsonResult;
     }
 
 

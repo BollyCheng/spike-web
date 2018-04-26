@@ -13,7 +13,6 @@ $(function () {
         encoding: 'UTF-8', //加载资源文件时使用的编码。默认为 UTF-8。
         callback: function () {//加载成功后设置显示内容
             //以下是将要国际化的文字内容
-            //console.log($.i18n.prop('web.modules.ups.user.title'));
             $(".dialog-button a[group='submit']>span>span").html($.i18n.prop('web.dialog.submit'));
             $(".dialog-button a[group='cancel']>span>span").html($.i18n.prop('web.dialog.cancel'));
             $(".dialog-button a[group='close']>span>span").html($.i18n.prop('web.dialog.close'));
