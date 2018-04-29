@@ -1,6 +1,6 @@
 package com.bolly.spike.model.entity.ups;
 
-import com.bolly.spike.model.entity.BaseEntity;
+import com.bolly.spike.model.entity.TreeEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
@@ -12,7 +12,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * Author   : Bolly
  * CreateAt : 2017/05/20 11:54:20
  */
-public class Department extends BaseEntity {
+public class Department extends TreeEntity<Department> {
 
     public static final Integer LEVEL_ROOT = 1;//顶级
     public static final Integer DELETE_TRUE = 1;//已删除
@@ -22,7 +22,6 @@ public class Department extends BaseEntity {
 
     private String name;//部门名称
     private Integer level;//级别 顶级为1
-    private Department parent;//上级部门
     private Integer order;//排序
     private Integer delete; //是否删除
 
@@ -56,18 +55,6 @@ public class Department extends BaseEntity {
         this.level = level;
     }
 
-    public Department getParent() {
-        return parent;
-    }
-
-    public void setParent(Department parent) {
-        this.parent = parent;
-    }
-
-    public Long getParentId() {
-        return parent == null ? null : parent.getId();
-    }
-
     public Integer getOrder() {
         return order;
     }
@@ -85,12 +72,15 @@ public class Department extends BaseEntity {
     }
 
     @Override
+    public void setParentId(Long parentId) {
+        if (parent == null) {
+            parent = new Department();
+        }
+        parent.setId(parentId);
+    }
+
+    @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
-
-    public String getTreeNodeHtml() {
-        return "";
-    }
-
 }
