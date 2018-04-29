@@ -1,6 +1,9 @@
 package com.bolly.spike.controller.ups;
 
+import com.bolly.spike.model.dto.SpikeRestfulResult;
 import com.bolly.spike.model.entity.ups.Department;
+import com.bolly.spike.model.util.ModelConvertUtil;
+import com.bolly.spike.model.vo.ComboTreeVo;
 import com.bolly.spike.service.ups.DepartmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,11 +31,18 @@ public class DepartmentController {
         return departmentService.getAllDepartment();
     }
 
+    @PostMapping(value = "/combotree")
+    @ResponseBody
+    public List<ComboTreeVo> getDepartmentTree() {
+        List<Department> departments = departmentService.getAllDepartment();
+        return ModelConvertUtil.convert(departments, Department.class, "id", "name");
+    }
+
     @PostMapping(value = "/add")
     @ResponseBody
-    public void newDepartment(Department department) {
-        LOGGER.info("收到新增部门的请求。");
-        throw new RuntimeException("123");
+    public SpikeRestfulResult newDepartment(Department department) {
+        Department data = departmentService.insert(department);
+        return new SpikeRestfulResult(data);
     }
 
 }

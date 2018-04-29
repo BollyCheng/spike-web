@@ -10,9 +10,11 @@ import java.util.List;
  */
 public interface DepartmentService {
 
-    void insert(Department department);
+    Department insert(Department department);
 
     void update(Department department);
+
+    Department loadById(Long id);
 
     List<Department> getAllDepartment();
 

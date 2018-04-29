@@ -1,0 +1,27 @@
+.window .easyui-dialog form table {
+    width: 100%;
+    padding: 10px 20px;
+    border-spacing:0 5px;
+}
+
+.window .easyui-dialog form table td+td {
+    padding-left: 10px;
+}
+
+.window .easyui-dialog form table td {
+    width: 25%;
+}
+
+.window .easyui-dialog form table td[colspan="3"] {
+    width: 75%;
+}
+
+.window .easyui-dialog form table td input,
+.window .easyui-dialog form table td span.textbox {
+    width: 100%;
+}
+
+.window .easyui-dialog form table td.form-name {
+    text-align: right;
+}
+

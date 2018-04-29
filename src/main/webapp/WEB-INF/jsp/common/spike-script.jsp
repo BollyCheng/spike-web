@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/framework/framework.css" />"/>
 <link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/framework/header.css" />"/>
 <link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/framework/sidebar.css" />"/>
+<link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/framework/easyui-dialog.css" />"/>
 <link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/easyui/easyui.css" />"/>
 <link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/content.css" />"/>
 <link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/metroStyle.css" />">

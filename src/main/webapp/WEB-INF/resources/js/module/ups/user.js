@@ -24,25 +24,12 @@ function initPageComponent() {
         validateOnCreate: false,
         validateOnBlur: true
     });
-    $("#txtDeptParentId").combotree({
-        url: SPIKE_PROJECT_NAME + "/ups/department/list",
-        required: false,
+    $(".department-combo-tree").combotree({
+        width: "100%",
+        required: true,
         editable: false,
-        id: "id",
-        text: "name",
-        loadFilter: function (departments) {
-            if (departments == null)
-                return null;
-            var rows = [];
-            for (var i = 0; i < departments.length; i++) {
-                var dept = departments[i];
-                dept._parentId = dept.parent == null ? null : dept.parent.id;
-                rows[i] = dept;
-            }
-            return rows;
-        },
-        onLoadSuccess: function (node, data) {
-        }
+        missingMessage: "请选择部门",
+        validateOnCreate: false
     });
 }
 
@@ -62,6 +49,34 @@ function initPageEvent() {
     $("#dlgNewUser").dialog("bindButtonEvents", {
         submit: function () {
             submitNewUserDialog();
+        }
+    });
+    //部门表单提交事件
+    $("#formNewDept").form({
+        success: function (strData) {
+            var jsonData = $.parseJSON(strData);
+            if (jsonData.result === "failed") {
+                console.error(jsonData.message);
+                return;
+            }
+            closeEasyuiDialog("dlgNewDept");
+            var treeObj = $.fn.zTree.getZTreeObj("groupTree");
+            var department = jsonData.data;
+            var parentNode = getGroupTreeNodeByDeptId(department.parentId);
+            if (parentNode == null) {
+                loadDepartments();
+                loadUsers();
+                return;
+            }
+            treeObj.addNodes(parentNode, -1, department)
+            //刷新对话框中的树形结构
+            $(".department-combo-tree").combotree("reload");
+        }
+    });
+    //部门表单提交事件
+    $("#formNewUser").form({
+        success: function () {
+            closeEasyuiDialog("dlgNewUser");
         }
     });
 }
@@ -90,11 +105,25 @@ var deptTreeOption = {
     //节点点击事件
     onNodeClick: function (event, treeId, treeNode) {
         reloadUsers();
+        $(".department-combo-tree").combotree("setValue", treeNode.id)
     }
 };
 
 function loadDepartments() {
     $("#groupTree").showDeptTree(deptTreeOption);
+}
+
+function getGroupTreeNodeByDeptId(deptId) {
+    var ztreeObj = $.fn.zTree.getZTreeObj("groupTree")
+    var nodes = ztreeObj.getNodes();
+    var allNodes = ztreeObj.transformToArray(nodes);
+    for (var i = 0; i < allNodes.length; i++) {
+        var node = allNodes[i];
+        if (node.id === deptId) {
+            return node;
+        }
+    }
+    return null;
 }
 
 function loadUsers() {

@@ -18,14 +18,39 @@ $(function () {
             $(".dialog-button a[group='close']>span>span").html($.i18n.prop('web.dialog.close'));
         }
     });
+
+    if ($(".department-combo-tree").length > 0) {
+        $(".department-combo-tree").combotree({
+            url: SPIKE_PROJECT_NAME + "/ups/department/combotree"
+        });
+    }
 });
+
+//使用占位符来格式化字符串
+//var str = "js实现用{two}自符串替换占位符{two} {three}  {one} ".format({one: "I",two: "LOVE",three: "YOU"});
+//var str2 = "js实现用{1}自符串替换占位符{1} {2}  {0} ".format("I","LOVE","YOU");
+String.prototype.format = function () {
+    if (arguments.length === 0)
+        return this;
+    var param = arguments[0];
+    var s = this;
+    if (typeof(param) === 'object') {
+        for (var key in param)
+            s = s.replace(new RegExp("\\{" + key + "\\}", "g"), param[key]);
+        return s;
+    } else {
+        for (var i = 0; i < arguments.length; i++)
+            s = s.replace(new RegExp("\\{" + i + "\\}", "g"), arguments[i]);
+        return s;
+    }
+};
 
 /**
  * 显示加载中的模态框
  * @param dim
  */
 function showLoadingMask(dim) {
-    if (dim == null) {
+    if (dim === null) {
         dim = $("#spike-body");
     }
     hideMask(dim);//对于同一个组件，同一时间只允许有一个模态框
@@ -48,7 +73,7 @@ function showLoadingMask(dim) {
  * @param dim
  */
 function hideMask(dim) {
-    if (dim == null) {
+    if (dim === null) {
         dim = $("#spike-body");
     }
     dim.find(".spike-mask").remove();

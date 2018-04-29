@@ -37,43 +37,78 @@
 
 <div id="dlgNewDept" class="easyui-dialog" title="新建部门" style="display: none; width: 400px;height: auto">
     <form id="formNewDept" method="post">
-        <div>
-            <label>上级部门:</label>
-            <input id="txtDeptParentId" type="text"/>
-        </div>
-        <div>
-            <label>部门名称:</label>
-            <input id="txtDeptName" type="text"/>
-        </div>
+        <table>
+            <tr>
+                <td class="form-name">
+                    <label for="txtDeptParentId">上级部门:</label>
+                </td>
+                <td class="form-value" colspan="3">
+                    <input id="txtDeptParentId" name="parent.id" class="department-combo-tree" type="text"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-name">
+                    <label for="txtDeptName">部门名称:</label>
+                </td>
+                <td class="form-value" colspan="3">
+                    <input id="txtDeptName" name="name" type="text"/>
+                </td>
+            </tr>
+        </table>
     </form>
 </div>
 
 <div id="dlgNewUser" class="easyui-dialog" title="新建用户" style="display: none; width: 400px;height: auto">
     <form id="formNewUser" method="post">
-        <div>
-            <label>工号：</label>
-            <input id="txtUserEmpNo" type="text"/>
-        </div>
-        <div>
-            <label>姓名：</label>
-            <input id="txtUserNameCN" type="text"/>
-        </div>
-        <div>
-            <label>昵称：</label>
-            <input id="txtUserNickName" type="text"/>
-        </div>
-        <div>
-            <label>邮箱：</label>
-            <input id="txtUserEmail" type="text"/>
-        </div>
-        <div>
-            <label>入职日期：</label>
-            <input id="txtUserHireDate" type="text" />
-        </div>
-        <div>
-            <label>部门：</label>
-            <input id="txtUserDepartment" type="text" />
-        </div>
+        <table>
+            <tr>
+                <td class="form-name">
+                    <label for="txtUserEmpNo">工号：</label>
+                </td>
+                <td class="form-value" colspan="3">
+                    <input id="txtUserEmpNo" type="text"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-name">
+                    <label for="txtUserNameCN">姓名：</label>
+                </td>
+                <td class="form-value" colspan="3">
+                    <input id="txtUserNameCN" type="text"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-name">
+                    <label for="txtUserNickName">昵称：</label></td>
+                <td class="form-value" colspan="3">
+                    <input id="txtUserNickName" type="text"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-name">
+                    <label for="txtUserEmail">邮箱：</label>
+                </td>
+                <td class="form-value" colspan="3">
+                    <input id="txtUserEmail" type="text"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-name">
+                    <label for="txtUserHireDate">入职日期：</label>
+                </td>
+                <td class="form-value" colspan="3">
+                    <input id="txtUserHireDate" name="hireDate" type="text"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-name">
+                    <label for="txtUserDepartment">部门：</label>
+                </td>
+                <td class="form-value" colspan="3">
+                    <input id="txtUserDepartment" name="department.id" class="department-combo-tree" type="text"/>
+                </td>
+            </tr>
+        </table>
     </form>
 </div>
 
