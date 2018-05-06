@@ -22,7 +22,7 @@ public class ModuleController {
     @Resource
     private ModuleService moduleService;
 
-    @GetMapping(value = {"", "/", "/page"})
+    @GetMapping(value = {"/page"})
     public String userPage() {
         return "ups.module.page";
     }

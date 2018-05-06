@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * 用户表的相关操作
- *
+ * <p>
  * Author   : Bolly
  * CreateAt : 2017/05/25 22:24:03
  */
@@ -37,10 +37,18 @@ public interface UserMapper {
     void delete(Long id);
 
     /**
+     * 用于获取用户的登录相关信息
+     *
+     * @param username 用户名
+     * @return 用户的信息，未查找到则返回null
+     */
+    User loadUserForLogin(String username);
+
+    /**
      * 通过用户ID查找用户
      *
      * @param id 用户ID
-     * @return 查找到的用户，为查找到则返回null
+     * @return 查找到的用户，未查找到则返回null
      */
     User loadById(Long id);
 

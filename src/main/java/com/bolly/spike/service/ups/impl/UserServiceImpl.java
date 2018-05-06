@@ -29,6 +29,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User loadUserForLogin(String username){
+        return userMapper.loadUserForLogin(username);
+    }
+
+    @Override
+    public User loadById(Long id){
+        return userMapper.loadById(id);
+    }
+
+    @Override
+    public User loadByUsername(String username){
+        return userMapper.loadByUsername(username);
+    }
+
+    @Override
     public List<User> list() {
         return userMapper.list();
     }

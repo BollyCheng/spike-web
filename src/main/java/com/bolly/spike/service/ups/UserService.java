@@ -14,6 +14,12 @@ public interface UserService {
 
     void update(User user);
 
+    User loadUserForLogin(String username);
+
+    User loadById(Long id);
+
+    User loadByUsername(String username);
+
     List<User> list();
 
 }

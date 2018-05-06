@@ -1,6 +1,8 @@
 <%--
-  Author  : Bolly
-  CreatAt : 2017/9/24 13:52
+  Created by IntelliJ IDEA.
+  User: Bolly
+  Date: 2018-05-06
+  Time: 18:04
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -8,15 +10,12 @@
 
 <html>
 <head>
-    <title><tiles:insertAttribute name="title"/></title>
     <tiles:insertAttribute name="meta"/>
+    <title><tiles:insertAttribute name="title"/></title>
     <tiles:insertAttribute name="script"/>
 </head>
 <body>
-
-<tiles:insertAttribute name="header"/>
 <div class="spike-container">
-    <tiles:insertAttribute name="sidebar"/>
     <tiles:insertAttribute name="content"/>
 </div>
 <tiles:insertAttribute name="footer"/>

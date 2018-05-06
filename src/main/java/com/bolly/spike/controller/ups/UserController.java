@@ -22,7 +22,7 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @GetMapping(value = {"", "/", "/page"})
+    @GetMapping(value = {"/page"})
     public String userPage() {
         return "ups.user.page";
     }

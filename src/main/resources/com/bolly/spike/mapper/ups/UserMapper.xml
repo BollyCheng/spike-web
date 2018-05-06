@@ -29,6 +29,18 @@
     )
   </insert>
 
+  <select id="loadUserForLogin" resultMap="userMap" parameterType="java.lang.String">
+    SELECT
+    tu.f_id,
+    tu.f_username,
+    tu.f_password,
+    tu.f_name,
+    tu.f_nickname,
+    tu.f_state
+    FROM t_user tu
+    WHERE tu.f_username = #{username}
+  </select>
+
   <sql id="commonSearch">
     SELECT
       tu.f_username,
