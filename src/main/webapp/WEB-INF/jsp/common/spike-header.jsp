@@ -2,15 +2,9 @@
   Author  : Bolly
   CreatAt : 2017/9/24 13:52
 --%>
-<%@ page import="org.apache.shiro.SecurityUtils" %>
-<%@ page import="org.apache.shiro.session.Session" %>
-<%@ page import="com.bolly.spike.model.entity.ups.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%
-Session spikeSession = SecurityUtils.getSubject().getSession();
-User loginUser = (User)spikeSession.getAttribute("loginUser");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="spike-header">
     <div class="spike-header-container">
         <div class="spike-brands">
@@ -23,7 +17,7 @@ User loginUser = (User)spikeSession.getAttribute("loginUser");
             Language:
             <a href="?lang=zh_CN"><spring:message code="language.cn"/></a>
             <a href="?lang=en_US"><spring:message code="language.en"/></a>
-            <a href="#"><%= loginUser.getName() %></a>
+            <a href="#"><c:out value="${loginUser.name}" /></a>
             <a href="#" class="btn-group">
                 <i class="icon icon-user"></i>
                 <i class="icon icon-play3"></i>
@@ -31,18 +25,14 @@ User loginUser = (User)spikeSession.getAttribute("loginUser");
         </div>
         <div class="spike-applications">
             <ol>
-                <li>
-                    <a href="#" class="active">
-                        <i class="icon icon-home"></i>
-                        <span>UPS</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="icon icon-infinite"></i>
-                        <span>ITS</span>
-                    </a>
-                </li>
+                <c:forEach items="${userApplications}" var="userApplication">
+                    <li>
+                        <a href="javascript:void(0)" <c:if test="${userApplication.name == 'UPS'}">class="active" </c:if>>
+                            <i class="icon icon-home"></i>
+                            <span>${userApplication.name}</span>
+                        </a>
+                    </li>
+                </c:forEach>
             </ol>
         </div>
     </div>

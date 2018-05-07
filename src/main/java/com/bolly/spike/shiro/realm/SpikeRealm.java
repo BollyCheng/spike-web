@@ -1,6 +1,12 @@
 package com.bolly.spike.shiro.realm;
 
+import com.bolly.spike.model.entity.ups.Application;
+import com.bolly.spike.model.entity.ups.Module;
 import com.bolly.spike.model.entity.ups.User;
+import com.bolly.spike.model.util.ModelConvertUtil;
+import com.bolly.spike.model.vo.ComboTreeVo;
+import com.bolly.spike.service.ups.ApplicationService;
+import com.bolly.spike.service.ups.ModuleService;
 import com.bolly.spike.service.ups.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -26,6 +32,13 @@ public class SpikeRealm extends AuthorizingRealm {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SpikeRealm.class);
 
+    @Resource
+    private UserService userService;
+    @Resource
+    private ApplicationService applicationService;
+    @Resource
+    private ModuleService moduleService;
+
     /**
      * 授权
      *
@@ -35,14 +48,15 @@ public class SpikeRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = (String) principals.getPrimaryPrincipal();
+        LOGGER.info("Start authorization for login user. username={}", username);
+
+        // ============================== 1.权限管理 ==============================
         List<String> permissionList = new ArrayList<>();
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         info.addStringPermissions(permissionList);
+
         return info;
     }
-
-    @Resource
-    private UserService userService;
 
     /**
      * 认证
@@ -55,6 +69,8 @@ public class SpikeRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String username = (String) token.getPrincipal();
         LOGGER.info("Validate user login information. username = {}", username);
+
+        // ============================== 1.登录认证 ==============================
         if (StringUtils.isEmpty(username)) {
             throw new AccountException("Login account is empty.");
         }
@@ -70,8 +86,18 @@ public class SpikeRealm extends AuthorizingRealm {
         }
         LOGGER.info("Validate user information success. username={}", username);
 
+        // ============================== 2.Session管理 ==============================
         Session session = SecurityUtils.getSubject().getSession();
-        session.setAttribute("loginUser", user);
+        // 登录用户
+        User loginUser = userService.loadByUsername(username);
+        session.setAttribute("loginUser", loginUser);
+        // 用户应用
+        List<Application> applications = applicationService.list();
+        session.setAttribute("userApplications", applications);
+        // 用户的模块
+        List<Module> modules = moduleService.list();
+        List<ComboTreeVo> moduleTree = ModelConvertUtil.convert(modules, Module.class, "id", "name");
+        session.setAttribute("userModules", moduleTree);
 
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(username, password, this.getName());
         return info;

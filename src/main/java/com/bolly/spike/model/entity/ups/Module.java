@@ -1,6 +1,6 @@
 package com.bolly.spike.model.entity.ups;
 
-import com.bolly.spike.model.entity.BaseEntity;
+import com.bolly.spike.model.entity.TreeEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
@@ -9,7 +9,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * Author   : Bolly
  * CreateAt : 2017/05/25 22:12:15
  */
-public class Module extends BaseEntity {
+public class Module extends TreeEntity<Module> {
 
     public static final int LEVEL_ROOT = 1;//根级别
 
@@ -18,7 +18,6 @@ public class Module extends BaseEntity {
     private Integer level;//模块级别
     private String order;//模块顺序
     private Application application;//所属应用
-    private Module parent;//上级模块
 
     public String getName() {
         return name;
@@ -64,12 +63,12 @@ public class Module extends BaseEntity {
         return application == null ? DEFAULT_STRING_VALUE : application.getName();
     }
 
-    public Module getParent() {
-        return parent;
-    }
-
-    public void setParent(Module parent) {
-        this.parent = parent;
+    @Override
+    public void setParentId(Long parentId) {
+        if (parent == null) {
+            parent = new Module();
+        }
+        parent.setId(parentId);
     }
 
     public String getParentModuleName() {
