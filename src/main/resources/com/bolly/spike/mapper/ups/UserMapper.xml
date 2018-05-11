@@ -22,7 +22,7 @@
   </resultMap>
 
   <insert id="insert">
-    INSERT INTO t_user (
+    INSERT INTO sys_user (
       f_id, f_username, f_password, f_nickname, f_department_id, f_create_by, f_create_at
     ) VALUES (
       #{id}, #{username}, #{password}, #{nickname}, #{department.id}, #{creator.id}, sysdate()
@@ -37,7 +37,7 @@
     tu.f_name,
     tu.f_nickname,
     tu.f_state
-    FROM t_user tu
+    FROM sys_user tu
     WHERE tu.f_username = #{username}
   </select>
 
@@ -56,8 +56,8 @@
       tu.f_last_edit_at,
       td.f_id   AS td_f_id,
       td.f_name AS td_f_name
-    FROM t_user tu
-      LEFT JOIN t_department td ON td.f_id = tu.f_department_id
+    FROM sys_user tu
+      LEFT JOIN sys_department td ON td.f_id = tu.f_department_id
   </sql>
 
   <select id="loadById" resultMap="userMap" parameterType="java.lang.Long">

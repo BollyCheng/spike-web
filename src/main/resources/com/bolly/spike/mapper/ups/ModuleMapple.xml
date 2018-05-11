@@ -27,9 +27,9 @@
       ta.f_name  AS ta_f_name,
       ptm.f_id   AS ptm_f_id,
       ptm.f_name AS ptm_f_name
-    FROM t_module tm
-      LEFT JOIN t_application ta ON tm.f_application_id = ta.f_id
-      LEFT JOIN t_module ptm ON tm.f_parent_id = ptm.f_id
+    FROM sys_module tm
+      LEFT JOIN sys_application ta ON tm.f_application_id = ta.f_id
+      LEFT JOIN sys_module ptm ON tm.f_parent_id = ptm.f_id
   </sql>
 
   <select id="list" resultMap="moduleMap">

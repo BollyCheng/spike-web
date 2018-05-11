@@ -28,7 +28,7 @@
   </resultMap>
 
   <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="department">
-    INSERT INTO t_department (
+    INSERT INTO sys_department (
       f_name, f_level,
       f_parent_id, f_order,
       f_create_by, f_create_at,
@@ -42,7 +42,7 @@
   </insert>
 
   <update id="deleteById" parameterType="department">
-    UPDATE t_department
+    UPDATE sys_department
     SET
       f_delete       = 2,
       f_last_edit_by = #{lastEditBy.id},
@@ -51,7 +51,7 @@
   </update>
 
   <update id="update" parameterType="department">
-    UPDATE t_department
+    UPDATE sys_department
     SET
       f_name         = #{name},
       f_level        = #{level},
@@ -78,10 +78,10 @@
       teu.f_id       AS teu_f_id,
       teu.f_username AS teu_f_username,
       teu.f_nickname AS teu_f_nickname
-    FROM t_department td
-      LEFT JOIN t_department ptd ON ptd.f_id = td.f_parent_id
-      LEFT JOIN t_user tcu ON tcu.f_id = td.f_create_by
-      LEFT JOIN t_user teu ON teu.f_id = td.f_last_edit_by
+    FROM sys_department td
+      LEFT JOIN sys_department ptd ON ptd.f_id = td.f_parent_id
+      LEFT JOIN sys_user tcu ON tcu.f_id = td.f_create_by
+      LEFT JOIN sys_user teu ON teu.f_id = td.f_last_edit_by
     WHERE td.f_delete = 1
   </sql>
 

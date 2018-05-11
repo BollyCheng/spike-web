@@ -15,7 +15,7 @@
       ta.f_id,
       ta.f_name,
       ta.f_description
-    FROM t_application ta
+    FROM sys_application ta
   </sql>
 
   <select id="list" resultMap="applicationMap">
