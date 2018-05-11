@@ -2,7 +2,7 @@
  * Author   : Bolly
  * CreateAt : 2017/04/23 22:47:22
  */
-; (function($, window, document, undefined) {
+;(function ($, window, document, undefined) {
     var pluginName = "sidebarMenu";
     var defaults = {
         speed: 300,
@@ -11,6 +11,7 @@
         singleOpen: true,
         clickEffect: true
     };
+
     function Plugin(element, options) {
         this.element = element;
         this.settings = $.extend({},
@@ -20,16 +21,26 @@
         this.init()
     };
     $.extend(Plugin.prototype, {
-        init: function() {
+        init: function () {
+            this.initMenu();
             this.openSubmenu();
             this.submenuIndicators();
             if (defaults.clickEffect) {
                 this.addClickEffect()
             }
         },
-        openSubmenu: function() {
+        initMenu: function () {
+            var activeMenu = $(this.element).find("ul li.active");
+            if (activeMenu != null) {
+                var parentMenu = activeMenu.parent();
+                parentMenu.css("display", "block");
+                parentMenu.prev().addClass("submenu-indicator-minus");
+                parentMenu.parent().addClass("active");
+            }
+        },
+        openSubmenu: function () {
             $(this.element).find("li").bind("click",
-                function(e) {
+                function (e) {
                     e.stopPropagation();
                     e.preventDefault();
                     if ($(this).children(".sidebar-submenu").length > 0) {
@@ -51,15 +62,15 @@
                     window.location.href = $(this).children("a").attr("href")
                 })
         },
-        submenuIndicators: function() {
+        submenuIndicators: function () {
             if ($(this.element).find(".sidebar-submenu").length > 0) {
                 $(this.element).find(".sidebar-submenu").siblings("a").append("<span class='submenu-indicator'>+</span>")
             }
         },
-        addClickEffect: function() {
+        addClickEffect: function () {
             var ink, d, x, y;
             $(this.element).find("a").bind("click",
-                function(e) {
+                function (e) {
                     $(".ink").remove();
                     if ($(this).children(".ink").length === 0) {
                         $(this).prepend("<span class='ink'></span>")
@@ -82,8 +93,8 @@
                 })
         }
     });
-    $.fn[pluginName] = function(options) {
-        this.each(function() {
+    $.fn[pluginName] = function (options) {
+        this.each(function () {
             if (!$.data(this, "plugin_" + pluginName)) {
                 $.data(this, "plugin_" + pluginName, new Plugin(this, options))
             }

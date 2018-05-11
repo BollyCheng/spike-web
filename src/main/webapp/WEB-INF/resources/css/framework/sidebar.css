@@ -42,10 +42,8 @@ ul.sidebar-submenu > li > a:focus {
     outline: none;
 }
 
-ul.sidebar-menu > li > a:hover,
-ul.sidebar-menu > li > a.active,
-ul.sidebar-submenu > li > a:hover,
-ul.sidebar-submenu > li > a.active {
+ul.sidebar-menu li.active > a,
+ul.sidebar-menu li > a:hover {
     color: #000;
     border-left: 5px solid #c7254e;
     background: #fff;
