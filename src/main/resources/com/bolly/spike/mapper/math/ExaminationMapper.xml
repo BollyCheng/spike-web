@@ -1,0 +1,29 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bolly.spike.mapper.math.ExaminationMapper">
+
+    <insert id="insertExamination" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO t_math_examination (
+        f_date, f_title, f_create_at, f_last_edit_at
+        ) VALUES (
+        #{date}, #{title}, sysdate(), sysdate()
+        )
+    </insert>
+
+    <update id="updateExamDegreeById">
+        UPDATE t_math_examination
+        SET f_total_count       = #{totalCount},
+            f_total_score       = #{totalScore},
+            f_difficulty_degree = #{difficultyDegree},
+            f_last_edit_at      = sysdate()
+        WHERE f_id = #{id}
+    </update>
+
+    <update id="updateExamScoreById">
+        UPDATE t_math_examination
+        SET f_actual_score = #{actualScore},
+            f_last_edit_at = sysdate()
+        WHERE f_id = #{id}
+    </update>
+
+</mapper>

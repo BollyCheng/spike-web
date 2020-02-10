@@ -1,0 +1,38 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bolly.spike.mapper.math.QuestionMapper">
+
+    <insert id="batchInsertQuestions">
+        INSERT INTO t_math_question (f_exam_id, f_index, f_subject, f_options, f_score, f_difficulty_degree,
+        f_create_at, f_last_edit_at)
+        VALUES
+        <foreach collection="questionList" item="item" separator=",">
+            (#{item.examId}, #{item.index}, #{item.subject}, #{item.options}, #{item.score}, #{item.difficultyDegree},
+            sysdate(), sysdate())
+        </foreach>
+    </insert>
+
+    <update id="updateAnswer">
+        UPDATE t_math_question
+        SET f_answer       = #{answer},
+            f_actual_score = #{actualScore},
+            f_last_edit_at = sysdate()
+        WHERE f_id = #{id}
+    </update>
+
+    <select id="findQuestionByExamIndex" resultType="com.bolly.spike.model.entity.math.Question">
+        SELECT f_id                AS id,
+               f_exam_id           AS examId,
+               f_index             AS `index`,
+               f_subject           AS `subject`,
+               f_options           AS `options`,
+               f_score             AS score,
+               f_difficulty_degree AS difficultyDegree,
+               f_answer            AS answer,
+               f_actual_score      AS actualScore
+        FROM t_math_question
+        WHERE f_exam_id = #{examId}
+          AND f_index = #{index}
+    </select>
+
+</mapper>
