@@ -10,22 +10,21 @@ import java.util.Date;
  */
 public class Examination extends BaseEntity {
 
-    @JSONField(format = "yyyy-MM-dd")
-    protected Date date; // 考试日期
+    protected String date; // 考试日期
     protected String title; // 试卷标题
-    protected String totalCount; // 题目数量
-    protected String totalScore; // 总分
-    protected String difficultyDegree; // 难度系数(各题目难度系数的平均值)
-    protected String actualScore; // 实际得分
+    protected Integer totalCount; // 题目数量
+    protected Integer totalScore; // 总分
+    protected Integer difficultyDegree; // 难度系数(各题目难度系数的平均值)
+    protected Integer actualScore; // 实际得分
 
     public Examination() {
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -37,35 +36,35 @@ public class Examination extends BaseEntity {
         this.title = title;
     }
 
-    public String getTotalCount() {
+    public Integer getTotalCount() {
         return totalCount;
     }
 
-    public void setTotalCount(String totalCount) {
+    public void setTotalCount(Integer totalCount) {
         this.totalCount = totalCount;
     }
 
-    public String getTotalScore() {
+    public Integer getTotalScore() {
         return totalScore;
     }
 
-    public void setTotalScore(String totalScore) {
+    public void setTotalScore(Integer totalScore) {
         this.totalScore = totalScore;
     }
 
-    public String getDifficultyDegree() {
+    public Integer getDifficultyDegree() {
         return difficultyDegree;
     }
 
-    public void setDifficultyDegree(String difficultyDegree) {
+    public void setDifficultyDegree(Integer difficultyDegree) {
         this.difficultyDegree = difficultyDegree;
     }
 
-    public String getActualScore() {
+    public Integer getActualScore() {
         return actualScore;
     }
 
-    public void setActualScore(String actualScore) {
+    public void setActualScore(Integer actualScore) {
         this.actualScore = actualScore;
     }
 }

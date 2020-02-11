@@ -9,4 +9,7 @@ public interface ExaminationService {
      */
     Examination generateExam();
 
+    void updateExamDegreeById(Examination exam);
+
+    void updateExamScoreById(Examination exam);
 }

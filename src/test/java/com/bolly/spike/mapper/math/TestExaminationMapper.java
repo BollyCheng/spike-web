@@ -21,7 +21,7 @@ public class TestExaminationMapper {
     @Test
     public void testInsertExamination() {
         Examination exam = new Examination();
-        exam.setDate(new Date());
+        exam.setDate("2020-01-01");
         exam.setTitle("测试新增试卷");
         examinationMapper.insertExamination(exam);
 

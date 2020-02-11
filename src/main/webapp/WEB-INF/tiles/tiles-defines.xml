@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-  <definition name="login" template="/WEB-INF/jsp/layout/login.jsp">
-    <put-attribute name="title" value="Login Spike" />
-    <put-attribute name="meta" value="/WEB-INF/jsp/common/spike-meta.jsp" />
-    <put-attribute name="script" value="/WEB-INF/jsp/common/spike-script.jsp" />
-    <put-attribute name="content" value="/WEB-INF/jsp/login.jsp" />
-    <put-attribute name="footer" value="/WEB-INF/jsp/common/spike-footer.jsp" />
-  </definition>
+    <definition name="login" template="/WEB-INF/jsp/layout/login.jsp">
+        <put-attribute name="title" value="Login Spike"/>
+        <put-attribute name="meta" value="/WEB-INF/jsp/common/spike-meta.jsp"/>
+        <put-attribute name="script" value="/WEB-INF/jsp/common/spike-script.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/login.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/jsp/common/spike-footer.jsp"/>
+    </definition>
 
-  <definition name="default" template="/WEB-INF/jsp/layout/layout.jsp">
-    <put-attribute name="title" value="Spike" />
-    <put-attribute name="meta" value="/WEB-INF/jsp/common/spike-meta.jsp" />
-    <put-attribute name="script" value="/WEB-INF/jsp/common/spike-script.jsp" />
-    <put-attribute name="header" value="/WEB-INF/jsp/common/spike-header.jsp" />
-    <put-attribute name="footer" value="/WEB-INF/jsp/common/spike-footer.jsp" />
-    <put-attribute name="sidebar" value="/WEB-INF/jsp/common/spike-sidebar.jsp" />
-  </definition>
+    <definition name="default" template="/WEB-INF/jsp/layout/layout.jsp">
+        <put-attribute name="title" value="Spike"/>
+        <put-attribute name="meta" value="/WEB-INF/jsp/common/spike-meta.jsp"/>
+        <put-attribute name="script" value="/WEB-INF/jsp/common/spike-script.jsp"/>
+        <put-attribute name="header" value="/WEB-INF/jsp/common/spike-header.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/jsp/common/spike-footer.jsp"/>
+        <put-attribute name="sidebar" value="/WEB-INF/jsp/common/spike-sidebar.jsp"/>
+    </definition>
 
-  <definition name="*.*.page" extends="default" >
-    <put-attribute name="content" value="/WEB-INF/jsp/modules/{1}/{2}.jsp" />
-  </definition>
+    <definition name="*.*.page" extends="default">
+        <put-attribute name="content" value="/WEB-INF/jsp/modules/{1}/{2}.jsp"/>
+    </definition>
 
-  <definition name="*.*" template="/WEB-INF/jsp/layout/error.jsp">
-  </definition>
+    <definition name="*.*.content" template="/WEB-INF/jsp/layout/layout-content.jsp">
+        <put-attribute name="title" value="Spike"/>
+        <put-attribute name="meta" value="/WEB-INF/jsp/common/spike-meta.jsp"/>
+        <put-attribute name="script" value="/WEB-INF/jsp/common/spike-script.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/jsp/modules/{1}/{2}.jsp"/>
+    </definition>
+
+    <definition name="*.*" template="/WEB-INF/jsp/layout/error.jsp">
+    </definition>
 
 </tiles-definitions>

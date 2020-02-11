@@ -13,5 +13,7 @@ public interface QuestionMapper {
 
     void updateAnswer(Question question);
 
-    Question findQuestionByExamIndex(@Param("examId") String examId, @Param("index") String index);
+    Question findQuestionByExamIndex(@Param("examId") Long examId, @Param("index") Integer index);
+
+    Question findQuestionById(Long id);
 }

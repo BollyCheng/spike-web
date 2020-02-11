@@ -24,6 +24,7 @@
     <script type="text/javascript" src="<spring:url value="/resources/js/framework/sidebar.js" /> "></script>
     <script type="text/javascript" src="<spring:url value="/resources/js/jquery.ztree.core.js" />"></script>
     <script type="text/javascript" src="<spring:url value="/resources/js/jquery.ztree.excheck.js" />"></script>
+    <script type="text/javascript" src="<spring:url value="/resources/js/framework/const.js" />"></script>
     <script type="text/javascript" src="<spring:url value="/resources/js/framework/grouptree.js" /> "></script>
 
 </head>
@@ -38,7 +39,7 @@
             </a>
         </div>
         <div class="spike-user">
-            <a href="#">成响林</a>
+            <a href="#">成锦言</a>
             <a href="#" class="btn-group">
                 <i class="icon icon-user"></i>
                 <i class="icon icon-play3"></i>
@@ -153,7 +154,7 @@
     </div>
 </div>
 
-<div class="spike-mask"></div>
+<div class="spike-mask" style="display: none;"></div>
 <div class="spike-mask-msg">
     <div class="wave-wrapper">
         <div class="w-rect rect1"></div>

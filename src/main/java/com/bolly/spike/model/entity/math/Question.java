@@ -4,31 +4,33 @@ import com.bolly.spike.model.entity.BaseEntity;
 
 public class Question extends BaseEntity {
 
-    protected String examId; // 试卷id
-    protected String index; // 题目编号,从1开始
+    public static final int INDEX_FIRST = 1; // 题目编号,从1开始
+
+    protected Long examId; // 试卷id
+    protected Integer index; // 题目编号,从1开始
     protected String subject; // 题目,如3+4=?
     protected String options; // 选项(四选一),用分号分隔,如 A.6;B.7;C.8;D.9
-    protected String score; // 分数
-    protected String difficultyDegree; // 难度系数(0~100之间)
+    protected Integer score; // 分数
+    protected Integer difficultyDegree; // 难度系数(0~100之间)
     protected String answer; // 答案
-    protected String actualScore; // 实际得分
+    protected Integer actualScore; // 实际得分
 
     public Question() {
     }
 
-    public String getExamId() {
+    public Long getExamId() {
         return examId;
     }
 
-    public void setExamId(String examId) {
+    public void setExamId(Long examId) {
         this.examId = examId;
     }
 
-    public String getIndex() {
+    public Integer getIndex() {
         return index;
     }
 
-    public void setIndex(String index) {
+    public void setIndex(Integer index) {
         this.index = index;
     }
 
@@ -48,19 +50,19 @@ public class Question extends BaseEntity {
         this.options = options;
     }
 
-    public String getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(String score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 
-    public String getDifficultyDegree() {
+    public Integer getDifficultyDegree() {
         return difficultyDegree;
     }
 
-    public void setDifficultyDegree(String difficultyDegree) {
+    public void setDifficultyDegree(Integer difficultyDegree) {
         this.difficultyDegree = difficultyDegree;
     }
 
@@ -72,11 +74,11 @@ public class Question extends BaseEntity {
         this.answer = answer;
     }
 
-    public String getActualScore() {
+    public Integer getActualScore() {
         return actualScore;
     }
 
-    public void setActualScore(String actualScore) {
+    public void setActualScore(Integer actualScore) {
         this.actualScore = actualScore;
     }
 }

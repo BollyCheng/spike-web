@@ -20,7 +20,7 @@
         WHERE f_id = #{id}
     </update>
 
-    <select id="findQuestionByExamIndex" resultType="com.bolly.spike.model.entity.math.Question">
+    <sql id="baseQuestionSelector">
         SELECT f_id                AS id,
                f_exam_id           AS examId,
                f_index             AS `index`,
@@ -31,8 +31,17 @@
                f_answer            AS answer,
                f_actual_score      AS actualScore
         FROM t_math_question
+    </sql>
+
+    <select id="findQuestionByExamIndex" resultType="com.bolly.spike.model.entity.math.Question">
+        <include refid="baseQuestionSelector"/>
         WHERE f_exam_id = #{examId}
-          AND f_index = #{index}
+        AND f_index = #{index}
+    </select>
+
+    <select id="findQuestionById" resultType="com.bolly.spike.model.entity.math.Question">
+        <include refid="baseQuestionSelector"/>
+        WHERE f_id = #{id}
     </select>
 
 </mapper>
