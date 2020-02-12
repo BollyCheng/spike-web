@@ -1,9 +1,6 @@
 package com.bolly.spike.model.entity.math;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import com.bolly.spike.model.entity.BaseEntity;
-
-import java.util.Date;
 
 /**
  * 试卷

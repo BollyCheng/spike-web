@@ -12,4 +12,5 @@ public interface ExaminationMapper {
 
     void updateExamScoreById(Examination exam);
 
+    Examination findExamById(Long id);
 }

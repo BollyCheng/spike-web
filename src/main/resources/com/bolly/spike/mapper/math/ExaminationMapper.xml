@@ -3,11 +3,8 @@
 <mapper namespace="com.bolly.spike.mapper.math.ExaminationMapper">
 
     <insert id="insertExamination" keyProperty="id" useGeneratedKeys="true">
-        INSERT INTO t_math_examination (
-        f_date, f_title, f_create_at, f_last_edit_at
-        ) VALUES (
-        #{date}, #{title}, sysdate(), sysdate()
-        )
+        INSERT INTO t_math_examination (f_date, f_title, f_create_at, f_last_edit_at)
+        VALUES (#{date}, #{title}, sysdate(), sysdate())
     </insert>
 
     <update id="updateExamDegreeById">
@@ -21,9 +18,21 @@
 
     <update id="updateExamScoreById">
         UPDATE t_math_examination
-        SET f_actual_score = #{actualScore},
+        SET f_actual_score = (SELECT SUM(f_actual_score) FROM t_math_question WHERE f_exam_id = #{id}),
             f_last_edit_at = sysdate()
         WHERE f_id = #{id}
     </update>
+
+    <select id="findExamById" resultType="com.bolly.spike.model.entity.math.Examination">
+        SELECT f_id                AS id,
+               f_date              AS `date`,
+               f_title             AS title,
+               f_total_count       AS totalCount,
+               f_total_score       AS totalScore,
+               f_difficulty_degree AS difficultyDegree,
+               f_actual_score      AS actualScore
+        FROM t_math_examination
+        WHERE f_id = #{id}
+    </select>
 
 </mapper>

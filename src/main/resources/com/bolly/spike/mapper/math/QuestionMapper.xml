@@ -3,11 +3,11 @@
 <mapper namespace="com.bolly.spike.mapper.math.QuestionMapper">
 
     <insert id="batchInsertQuestions">
-        INSERT INTO t_math_question (f_exam_id, f_index, f_subject, f_options, f_score, f_difficulty_degree,
+        INSERT INTO t_math_question (f_exam_id, f_index, f_subject, f_right_answer, f_options, f_score, f_difficulty_degree,
         f_create_at, f_last_edit_at)
         VALUES
         <foreach collection="questionList" item="item" separator=",">
-            (#{item.examId}, #{item.index}, #{item.subject}, #{item.options}, #{item.score}, #{item.difficultyDegree},
+            (#{item.examId}, #{item.index}, #{item.subject}, #{item.rightAnswer}, #{item.options}, #{item.score}, #{item.difficultyDegree},
             sysdate(), sysdate())
         </foreach>
     </insert>
@@ -25,6 +25,7 @@
                f_exam_id           AS examId,
                f_index             AS `index`,
                f_subject           AS `subject`,
+               f_right_answer      AS `rightAnswer`,
                f_options           AS `options`,
                f_score             AS score,
                f_difficulty_degree AS difficultyDegree,

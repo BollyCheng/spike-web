@@ -55,8 +55,8 @@ public class QuestionServiceImpl implements QuestionService {
         question.setActualScore(isValid ? question.getScore() : 0);
         // 更新回答结果
         questionMapper.updateAnswer(question);
-        // 查找下一题
-        return questionMapper.findQuestionByExamIndex(question.getExamId(), question.getIndex() + 1);
+        // 查找题目
+        return questionMapper.findQuestionById(qst.getId());
     }
 
 }

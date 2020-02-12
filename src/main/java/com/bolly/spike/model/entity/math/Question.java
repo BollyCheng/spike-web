@@ -1,6 +1,8 @@
 package com.bolly.spike.model.entity.math;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.bolly.spike.model.entity.BaseEntity;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 public class Question extends BaseEntity {
 
@@ -9,6 +11,8 @@ public class Question extends BaseEntity {
     protected Long examId; // 试卷id
     protected Integer index; // 题目编号,从1开始
     protected String subject; // 题目,如3+4=?
+    @JSONField(serialize = false)
+    protected Integer rightAnswer; // 正确答案
     protected String options; // 选项(四选一),用分号分隔,如 A.6;B.7;C.8;D.9
     protected Integer score; // 分数
     protected Integer difficultyDegree; // 难度系数(0~100之间)
@@ -40,6 +44,14 @@ public class Question extends BaseEntity {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    public Integer getRightAnswer() {
+        return rightAnswer;
+    }
+
+    public void setRightAnswer(Integer rightAnswer) {
+        this.rightAnswer = rightAnswer;
     }
 
     public String getOptions() {

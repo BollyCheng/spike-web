@@ -12,4 +12,6 @@ public interface ExaminationService {
     void updateExamDegreeById(Examination exam);
 
     void updateExamScoreById(Examination exam);
+
+    Examination findExamById(Long id);
 }

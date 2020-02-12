@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/math")
@@ -32,10 +30,21 @@ public class MathController {
         return new SpikeRestfulResult(mathService.startExam());
     }
 
-    @PostMapping("answerQuestion")
+    @PostMapping("/answerQuestion")
     @ResponseBody
     public SpikeRestfulResult answerQuestion(Question question) {
         return new SpikeRestfulResult(mathService.answerQuestion(question));
     }
 
+    @PostMapping("/findQuestionByExamIndex")
+    @ResponseBody
+    public SpikeRestfulResult findQuestionByExamIndex(Question question) {
+        return new SpikeRestfulResult(mathService.findQuestionByExamIndex(question.getExamId(), question.getIndex()));
+    }
+
+    @PostMapping("/submitExam")
+    @ResponseBody
+    public SpikeRestfulResult submitExam(Examination examination) {
+        return new SpikeRestfulResult(mathService.submitExam(examination));
+    }
 }

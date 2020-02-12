@@ -35,4 +35,9 @@ public class ExaminationServiceImpl implements ExaminationService {
         examinationMapper.updateExamScoreById(exam);
     }
 
+    @Override
+    public Examination findExamById(Long id) {
+        return examinationMapper.findExamById(id);
+    }
+
 }

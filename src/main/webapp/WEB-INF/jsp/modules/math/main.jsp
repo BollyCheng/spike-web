@@ -28,9 +28,17 @@
                 <a href="javascript:void(0);" class="btn">C.33</a>
                 <a href="javascript:void(0);" class="btn">D.43</a>
             </div>
+            <div id="result">
+                <span id="resultSuccess" style="color:green;">恭喜你，回答正确</span>
+                <span id="resultFailed" style="color: red;">很遗憾，回答错误</span>
+            </div>
+            <div id="action">
+                <a id="btnNextQuestion" href="javascript:void(0);" class="btn">下一题</a>
+                <a id="btnSubmitExam" href="javascript:void(0);" class="btn">交 卷</a>
+            </div>
         </div>
         <div id="panelExamScore" style="display: none; text-align: center">
-            <div>
+            <div style="font-size: 100px">
                 <span>总分：</span><span id="labScore">100</span><span> 分</span>
             </div>
             <div>
@@ -42,8 +50,19 @@
 
 <script type="text/javascript" src="<spring:url value="/resources/js/module/math/math.js" /> "></script>
 <style type="text/css">
-    #btnStartExam, #panelExamScore {
-        font-size: 100px;
+    .spike-content-main {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    #btnStartExam, #btnRestartExam {
+        border: 2px solid;
+        border-color: #8c8c8c;
+        border-radius: 5px;
+        height: 100px;
+        padding: 0 20px;
+        line-height: 80px;
+        font-size: 80px;
     }
 
     #subject {
@@ -51,15 +70,11 @@
         height: 100px;
         line-height: 100px;
         font-size: 100px;
-        text-align: center;
-        vertical-align: middle;
     }
 
     #options {
         height: 80px;
-        text-align: center;
-        vertical-align: middle;
-        padding-top: 50px;
+        margin-top: 50px;
     }
 
     #options > a {
@@ -69,7 +84,7 @@
         line-height: 80px;
     }
 
-    #options > a + a {
+    #options > a + a, #action > a + a {
         margin-left: 30px;
     }
 
@@ -83,6 +98,32 @@
 
     #options > a.active {
         border-color: blue;
+    }
+
+    #result {
+        margin-top: 20px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 30px;
+    }
+
+    #action {
+        height: 50px;
+        margin: 20px 0;
+    }
+
+    #action > a {
+        display: inline-block;
+        font-size: 40px;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    #action > a.btn {
+        color: white;
+        background-color: deepskyblue;
+        border-radius: 5px;
+        padding: 0 10px;
     }
 
 </style>

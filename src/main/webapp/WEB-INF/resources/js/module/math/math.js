@@ -16,23 +16,8 @@ function initPageEvent() {
     $("#btnStartExam, #btnRestartExam").unbind("click").bind("click", startExam);
 
     $("#options > a").unbind("click").bind("click", answerQuestion);
-}
-
-function startExam() {
-    $.ajax({
-        url: SPIKE_PROJECT_NAME + "/math/startExam",
-        method: "post",
-        dataType: "json",
-        success: function (data) {
-            if (data == null) {
-                return;
-            }
-            examination = data.data.examination;
-            question = data.data.question;
-            refreshQuestion();
-            showQuestionPanel();
-        }
-    });
+    $("#btnNextQuestion").unbind("click").bind("click", nextQuestion);
+    $("#btnSubmitExam").unbind("click").bind("click", submitExam);
 }
 
 function showStartExamPanel() {
@@ -63,6 +48,32 @@ function refreshQuestion() {
     for (var i = 0; i < 4; i++) {
         $("#options > a")[i].text = optionList[i];
     }
+    // 结果
+    $("#resultSuccess, #resultFailed").css("display", "none");
+    // 动作按钮
+    $("#btnSubmitExam, #btnNextQuestion").css("display", "none");
+    if (question.index === examination.totalCount) {
+        $("#btnSubmitExam").show();
+    } else {
+        $("#btnNextQuestion").show();
+    }
+}
+
+function startExam() {
+    $.ajax({
+        url: SPIKE_PROJECT_NAME + "/math/startExam",
+        method: "post",
+        dataType: "json",
+        success: function (data) {
+            if (data == null) {
+                return;
+            }
+            examination = data.data.examination;
+            question = data.data.question;
+            refreshQuestion();
+            showQuestionPanel();
+        }
+    });
 }
 
 function answerQuestion() {
@@ -77,11 +88,50 @@ function answerQuestion() {
         data: question,
         success: function (data) {
             question = data.data;
+            $("#resultSuccess, #resultFailed").css("display", "none");
+            if (question.actualScore > 0) {
+                $("#resultSuccess").show();
+            } else {
+                $("#resultFailed").show();
+            }
+        }
+    });
+}
+
+function nextQuestion() {
+    if (!question.answer) {
+        alert("请先选择答案.");
+        return;
+    }
+    $.ajax({
+        url: SPIKE_PROJECT_NAME + "/math/findQuestionByExamIndex",
+        method: "post",
+        dataType: "json",
+        data: {examId: examination.id, index: question.index + 1},
+        success: function (data) {
+            question = data.data;
             if (!question) {
-                setTimeout(showExamScore, 300);
+                submitExam();
                 return;
             }
             refreshQuestion();
+        }
+    });
+}
+
+function submitExam() {
+    if (!question.answer) {
+        alert("请先选择答案.");
+        return;
+    }
+    $.ajax({
+        url: SPIKE_PROJECT_NAME + "/math/submitExam",
+        method: "post",
+        dataType: "json",
+        data: examination,
+        success: function (data) {
+            examination = data.data;
+            showExamScore();
         }
     });
 }

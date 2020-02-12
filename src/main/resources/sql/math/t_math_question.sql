@@ -5,6 +5,7 @@ CREATE TABLE t_math_question
     f_exam_id INT NOT NULL COMMENT '试卷id',
     f_index VARCHAR(10) NOT NULL COMMENT '问题序号',
     f_subject VARCHAR(200) NOT NULL COMMENT '题目',
+    f_right_answer VARCHAR(10) NOT NULL COMMENT '正确答案',
     f_options VARCHAR(200) NOT NULL COMMENT '选项',
     f_score VARCHAR(10) NOT NULL DEFAULT '0' COMMENT '题目分数',
     f_difficulty_degree VARCHAR(10) NOT NULL DEFAULT '0' COMMENT '难度系数',

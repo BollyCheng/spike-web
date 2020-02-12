@@ -38,4 +38,15 @@ public class MathServiceImpl implements MathService {
         return questionService.answerQuestion(question);
     }
 
+    @Override
+    public Question findQuestionByExamIndex(long examId, int index) {
+        return questionService.findQuestion(examId, index);
+    }
+
+    @Override
+    public Examination submitExam(Examination examination) {
+        examinationService.updateExamScoreById(examination);
+        return examinationService.findExamById(examination.getId());
+    }
+
 }
