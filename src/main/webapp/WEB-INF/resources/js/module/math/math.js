@@ -94,8 +94,35 @@ function answerQuestion() {
             } else {
                 $("#resultFailed").show();
             }
+            if (question.index === examination.totalCount) {
+                return;
+            }
+            // 启动延时(答对了，停留3秒，答错了，停留5秒)
+            restSec = question.actualScore > 0 ? 3 : 5;
+            refreshNextQuestionButton();
+            clearInterval(intervalNextQuestion);
+            intervalNextQuestion = setInterval(refreshRestTime, 1000);
         }
     });
+}
+
+var intervalNextQuestion;
+var restSec = -1;
+
+function refreshNextQuestionButton() {
+    if (restSec > 0) {
+        $("#btnNextQuestion").text("下一题(" + restSec + ")");
+    } else {
+        $("#btnNextQuestion").text("下一题");
+    }
+}
+
+function refreshRestTime() {
+    restSec = restSec - 1;
+    refreshNextQuestionButton();
+    if (restSec <= 0) {
+        nextQuestion();
+    }
 }
 
 function nextQuestion() {
@@ -103,6 +130,8 @@ function nextQuestion() {
         alert("请先选择答案.");
         return;
     }
+    restSec = -1;
+    clearInterval(intervalNextQuestion);
     $.ajax({
         url: SPIKE_PROJECT_NAME + "/math/findQuestionByExamIndex",
         method: "post",
