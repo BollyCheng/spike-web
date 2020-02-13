@@ -10,6 +10,10 @@ public class SimpleSubtractIn20Subject extends SimpleSubtractSubject {
 
     public SimpleSubtractIn20Subject() {
         super();
+        if (num2 > getMinValue()) {
+            num2 = new Random().nextInt(getMinValue());
+        }
+        rightAnswer = num1 - num2;
     }
 
     @Override
@@ -24,7 +28,7 @@ public class SimpleSubtractIn20Subject extends SimpleSubtractSubject {
 
     @Override
     public AbstractOptionsGen getOptionsGen() {
-        int rndValue = new Random().nextInt(100);
+        int rndValue = generateRandomNum(0, 100);
         if (rndValue >= 50) {
             return new RandomOptions(rightAnswer, 0, num1);
         }

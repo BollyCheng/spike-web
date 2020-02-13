@@ -24,7 +24,7 @@ public class SimpleSubtractIn100Subject extends SimpleSubtractSubject {
 
     @Override
     public AbstractOptionsGen getOptionsGen() {
-        int rndValue = new Random().nextInt(100);
+        int rndValue = generateRandomNum(0, 100);
         if (rndValue >= 20) {
             return new RandomOptions(rightAnswer, 0, num1);
         }

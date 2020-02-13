@@ -29,7 +29,7 @@ public class SimplePlusIn20Subject extends SimplePlusSubject {
 
     @Override
     public AbstractOptionsGen getOptionsGen() {
-        int rndValue = new Random().nextInt(100);
+        int rndValue = generateRandomNum(0, 100);
         if (rndValue >= 50) {
             return new RandomOptions(rightAnswer, getMinValue(), getMaxValue());
         }

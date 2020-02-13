@@ -12,13 +12,8 @@ public abstract class SimplePlusSubject extends AbstractSubjectGen {
     public SimplePlusSubject() {
         int maxValue = getMaxValue();
         int minValue = getMinValue();
-        Random random = new Random();
-        num1 = random.nextInt(maxValue);
-        if (num1 == maxValue) {
-            num2 = minValue;
-        } else {
-            num2 = random.nextInt(maxValue - num1);
-        }
+        num1 = generateRandomNum(0, maxValue);
+        num2 = generateRandomNum(num1 > minValue ? 0 : minValue - num1, maxValue - num1);
         rightAnswer = num1 + num2;
     }
 

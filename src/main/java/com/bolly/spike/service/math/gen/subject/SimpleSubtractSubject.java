@@ -13,13 +13,8 @@ public abstract class SimpleSubtractSubject extends AbstractSubjectGen {
         int maxValue = getMaxValue();
         int minValue = getMinValue();
 
-        Random random = new Random();
-        num1 = random.nextInt(maxValue - minValue) + minValue;
-        if (num1 == minValue) {
-            num2 = minValue;
-        } else {
-            num2 = random.nextInt(num1);
-        }
+        num1 = generateRandomNum(minValue, maxValue);
+        num2 = generateRandomNum(0, num1);
         rightAnswer = num1 - num2;
     }
 

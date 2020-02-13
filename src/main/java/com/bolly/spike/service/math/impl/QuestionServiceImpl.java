@@ -19,7 +19,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public void generateQuestions(Examination examination) {
-        int totalCount = 10; // 题目总数
+        int totalCount = 50; // 题目总数
         int totalScore = 0;
         int totlDifficultyDegree = 0;
         List<Question> questionList = new ArrayList<>();
