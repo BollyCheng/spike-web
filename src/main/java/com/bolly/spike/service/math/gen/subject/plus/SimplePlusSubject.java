@@ -1,7 +1,8 @@
-package com.bolly.spike.service.math.gen.subject;
+package com.bolly.spike.service.math.gen.subject.plus;
 
 import com.bolly.spike.service.math.gen.options.AbstractOptionsGen;
 import com.bolly.spike.service.math.gen.options.SimpleOptions;
+import com.bolly.spike.service.math.gen.subject.AbstractSubjectGen;
 
 public abstract class SimplePlusSubject extends AbstractSubjectGen {
 

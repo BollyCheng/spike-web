@@ -27,7 +27,7 @@ public class QuestionServiceImpl implements QuestionService {
             Question question = QuestionFactory.generateQuestion();
             question.setExamId(examination.getId());
             question.setIndex(i);
-            question.setScore(10);// 每个题目的分数
+            question.setScore(2);// 每个题目的分数
             questionList.add(question);
             totalScore += question.getScore();
             totlDifficultyDegree += question.getDifficultyDegree();

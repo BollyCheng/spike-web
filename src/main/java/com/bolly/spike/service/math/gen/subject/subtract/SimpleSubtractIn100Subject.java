@@ -1,38 +1,36 @@
-package com.bolly.spike.service.math.gen.subject;
+package com.bolly.spike.service.math.gen.subject.subtract;
 
 import com.bolly.spike.service.math.gen.options.AbstractOptionsGen;
 import com.bolly.spike.service.math.gen.options.RandomOptions;
 import com.bolly.spike.service.math.gen.options.SimpleOptions;
 
-import java.util.Random;
+public class SimpleSubtractIn100Subject extends SimpleSubtractSubject {
 
-public class SimpleSubtractIn20Subject extends SimpleSubtractSubject {
-
-    public SimpleSubtractIn20Subject() {
+    public SimpleSubtractIn100Subject() {
         super();
-        if (num2 > getMinValue()) {
-            num2 = new Random().nextInt(getMinValue());
-        }
-        rightAnswer = num1 - num2;
     }
 
     @Override
     public int getMinValue() {
-        return 10;
+        return 20;
     }
 
     @Override
     public int getMaxValue() {
-        return 20;
+        return 100;
+    }
+
+    @Override
+    public int getDifficultyDegree() {
+        return 130;
     }
 
     @Override
     public AbstractOptionsGen getOptionsGen() {
         int rndValue = generateRandomNum(0, 100);
-        if (rndValue >= 40) {
+        if (rndValue >= 20) {
             return new RandomOptions(rightAnswer, 0, num1);
         }
         return new SimpleOptions(rightAnswer, 0, num1);
     }
-
 }

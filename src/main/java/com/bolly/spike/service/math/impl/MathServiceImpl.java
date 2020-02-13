@@ -4,9 +4,9 @@ import com.bolly.spike.model.entity.math.Examination;
 import com.bolly.spike.model.entity.math.Question;
 import com.bolly.spike.service.math.ExaminationService;
 import com.bolly.spike.service.math.MathService;
-import com.bolly.spike.service.math.QuestionFactory;
 import com.bolly.spike.service.math.QuestionService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -20,6 +20,7 @@ public class MathServiceImpl implements MathService {
     @Resource
     protected QuestionService questionService;
 
+    @Transactional
     @Override
     public Map startExam() {
         // 生成考试试卷和考试题目
@@ -33,6 +34,7 @@ public class MathServiceImpl implements MathService {
         return result;
     }
 
+    @Transactional
     @Override
     public Question answerQuestion(Question question) {
         return questionService.answerQuestion(question);
@@ -43,6 +45,7 @@ public class MathServiceImpl implements MathService {
         return questionService.findQuestion(examId, index);
     }
 
+    @Transactional
     @Override
     public Examination submitExam(Examination examination) {
         examinationService.updateExamScoreById(examination);

@@ -1,4 +1,6 @@
-package com.bolly.spike.service.math.gen.subject;
+package com.bolly.spike.service.math.gen.subject.subtract;
+
+import com.bolly.spike.service.math.gen.subject.AbstractSubjectGen;
 
 /**
  * 简单减法
