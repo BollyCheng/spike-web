@@ -29,7 +29,7 @@ public class SimpleSubtractIn20Subject extends SimpleSubtractSubject {
     @Override
     public AbstractOptionsGen getOptionsGen() {
         int rndValue = generateRandomNum(0, 100);
-        if (rndValue >= 50) {
+        if (rndValue >= 40) {
             return new RandomOptions(rightAnswer, 0, num1);
         }
         return new SimpleOptions(rightAnswer, 0, num1);

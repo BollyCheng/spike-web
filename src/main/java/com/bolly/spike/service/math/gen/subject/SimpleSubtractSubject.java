@@ -1,7 +1,5 @@
 package com.bolly.spike.service.math.gen.subject;
 
-import java.util.Random;
-
 /**
  * 简单减法
  */

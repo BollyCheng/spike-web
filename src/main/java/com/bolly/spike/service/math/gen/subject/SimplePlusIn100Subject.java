@@ -4,8 +4,6 @@ import com.bolly.spike.service.math.gen.options.AbstractOptionsGen;
 import com.bolly.spike.service.math.gen.options.RandomOptions;
 import com.bolly.spike.service.math.gen.options.SimpleOptions;
 
-import java.util.Random;
-
 public class SimplePlusIn100Subject extends SimplePlusSubject {
 
     public SimplePlusIn100Subject() {

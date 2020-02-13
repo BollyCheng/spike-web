@@ -4,8 +4,6 @@ import com.bolly.spike.service.math.gen.options.AbstractOptionsGen;
 import com.bolly.spike.service.math.gen.options.RandomOptions;
 import com.bolly.spike.service.math.gen.options.SimpleOptions;
 
-import java.util.Random;
-
 public class SimplePlusIn20Subject extends SimplePlusSubject {
 
     public SimplePlusIn20Subject() {
@@ -30,7 +28,7 @@ public class SimplePlusIn20Subject extends SimplePlusSubject {
     @Override
     public AbstractOptionsGen getOptionsGen() {
         int rndValue = generateRandomNum(0, 100);
-        if (rndValue >= 50) {
+        if (rndValue >= 40) {
             return new RandomOptions(rightAnswer, getMinValue(), getMaxValue());
         }
         return new SimpleOptions(rightAnswer, getMinValue(), getMaxValue());

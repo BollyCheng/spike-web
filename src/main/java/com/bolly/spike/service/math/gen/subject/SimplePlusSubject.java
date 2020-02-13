@@ -3,8 +3,6 @@ package com.bolly.spike.service.math.gen.subject;
 import com.bolly.spike.service.math.gen.options.AbstractOptionsGen;
 import com.bolly.spike.service.math.gen.options.SimpleOptions;
 
-import java.util.Random;
-
 public abstract class SimplePlusSubject extends AbstractSubjectGen {
 
     protected int num1, num2;
