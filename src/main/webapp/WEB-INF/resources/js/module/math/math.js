@@ -99,7 +99,7 @@ var restSec = -1;
 
 function refreshNextQuestionButton() {
     if (restSec > 0) {
-        $("#timeWait").text("(" + restSec + ")");
+        $("#timeWait").text("(" + restSec.toFixed(1) + ")");
     } else {
         $("#timeWait").text("");
     }
