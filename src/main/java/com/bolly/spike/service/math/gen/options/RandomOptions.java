@@ -1,5 +1,9 @@
 package com.bolly.spike.service.math.gen.options;
 
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Random;
 
 /**
@@ -7,19 +11,26 @@ import java.util.Random;
  */
 public class RandomOptions extends AbstractOptionsGen {
 
+    public static final Logger LOGGER = LoggerFactory.getLogger(RandomOptions.class);
+
     public RandomOptions(int rightValue, int minValue, int maxValue) {
         super(rightValue, minValue, maxValue);
-        options.add(rightValue);
+        LOGGER.info("rightValue={}, minValue={}, maxValue={}", rightValue, minValue, maxValue);
 
-        Random random = new Random();
-        int rndNum = maxValue - minValue;
+        options.add(rightValue);
         for (int i = 1; i < OPTION_NUMBER; i++) {
-            int value;
-            do {
-                value = random.nextInt(rndNum) + minValue;
-            } while (options.contains(value));
+            int value = generateRandomNum(minValue, maxValue - i);
+
+            for (int j = 0; j < i; j++) {
+                if (!options.contains(value)) {
+                    break;
+                }
+                value++;
+            }
             options.add(value);
         }
+
+        LOGGER.info("options=[{}]", StringUtils.join(options, ","));
     }
 
 }

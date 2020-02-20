@@ -2,14 +2,13 @@ package com.bolly.spike.service.math.gen.options;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public abstract class AbstractOptionsGen {
 
     protected static final int OPTION_NUMBER = 4;
+
+    protected Random random = new Random();
 
     protected final int rightValue;
     protected final int minValue;
@@ -29,6 +28,21 @@ public abstract class AbstractOptionsGen {
             strOptions[i] = (char) ('A' + i) + "." + options.get(i);
         }
         return StringUtils.join(strOptions, ";");
+    }
+
+    /**
+     * 在数值范围内生成随机数
+     *
+     * @param minValue 最小值
+     * @param maxValue 最大值
+     * @return 随机数
+     */
+    protected int generateRandomNum(int minValue, int maxValue) {
+        int rndNum = maxValue - minValue;
+        if (rndNum <= 0) {
+            return minValue;
+        }
+        return random.nextInt(rndNum) + minValue;
     }
 
 }

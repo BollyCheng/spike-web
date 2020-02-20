@@ -19,23 +19,28 @@
             <a id="btnStartExam" type="btn" href="javascript:void(0);">开始考试</a>
         </div>
         <div id="panelQuestion" style="display: none;">
-            <div style="display: block;text-align: center;">
-                <span id="subject" class="number">12 + ? = 21</span>
-            </div>
-            <div id="options">
-                <a href="javascript:void(0);" class="btn active">A.23</a>
-                <a href="javascript:void(0);" class="btn">B.32</a>
-                <a href="javascript:void(0);" class="btn">C.33</a>
-                <a href="javascript:void(0);" class="btn">D.43</a>
-            </div>
-            <div id="result">
-                <span id="resultSuccess" style="color:green;">恭喜你，回答正确</span>
-                <span id="resultFailed" style="color: red;">很遗憾，回答错误</span>
-            </div>
-            <div id="action">
-                <a id="btnNextQuestion" href="javascript:void(0);" class="btn">下一题</a>
-                <a id="btnSubmitExam" href="javascript:void(0);" class="btn">交 卷</a>
-            </div>
+            <table style="width: 100%">
+                <tr>
+                    <td>
+                        <div style="display: block;text-align: center;">
+                            <span id="subject" class="number">12 + ? = 21</span>
+                        </div>
+                        <div id="result">
+                            <span id="resultSuccess" style="color:green;">恭喜你，回答正确</span>
+                            <span id="resultFailed" style="color: red;">很遗憾，回答错误</span>
+                            <span id="timeWait"></span>
+                        </div>
+                    </td>
+                    <td style="width: 380px">
+                        <div id="options">
+                            <a href="javascript:void(0);" class="btn active">A.23</a>
+                            <a href="javascript:void(0);" class="btn">B.32</a>
+                            <a href="javascript:void(0);" class="btn">C.33</a>
+                            <a href="javascript:void(0);" class="btn">D.43</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
         <div id="panelExamScore" style="display: none; text-align: center">
             <div style="font-size: 100px">
@@ -50,7 +55,7 @@
 
 <script type="text/javascript" src="<spring:url value="/resources/js/module/math/math.js" /> "></script>
 <style type="text/css">
-    .spike-content-main {
+    .spike-content-main, table {
         text-align: center;
         vertical-align: middle;
     }
@@ -73,19 +78,17 @@
     }
 
     #options {
-        height: 80px;
-        margin-top: 50px;
+        height: 160px;
+        margin-top: 20px;
     }
 
     #options > a {
         display: inline-block;
-        font-size: 80px;
-        height: 80px;
-        line-height: 80px;
-    }
-
-    #options > a + a, #action > a + a {
-        margin-left: 30px;
+        width: 160px;
+        font-size: 60px;
+        height: 60px;
+        line-height: 60px;
+        margin: 10px;
     }
 
     #options > a.btn {
@@ -105,25 +108,6 @@
         height: 30px;
         line-height: 30px;
         font-size: 30px;
-    }
-
-    #action {
-        height: 50px;
-        margin: 20px 0;
-    }
-
-    #action > a {
-        display: inline-block;
-        font-size: 40px;
-        height: 50px;
-        line-height: 50px;
-    }
-
-    #action > a.btn {
-        color: white;
-        background-color: deepskyblue;
-        border-radius: 5px;
-        padding: 0 10px;
     }
 
 </style>

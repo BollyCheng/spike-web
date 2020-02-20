@@ -16,8 +16,6 @@ function initPageEvent() {
     $("#btnStartExam, #btnRestartExam").unbind("click").bind("click", startExam);
 
     $("#options > a").unbind("click").bind("click", answerQuestion);
-    $("#btnNextQuestion").unbind("click").bind("click", nextQuestion);
-    $("#btnSubmitExam").unbind("click").bind("click", submitExam);
 }
 
 function showStartExamPanel() {
@@ -50,13 +48,6 @@ function refreshQuestion() {
     }
     // 结果
     $("#resultSuccess, #resultFailed").css("display", "none");
-    // 动作按钮
-    $("#btnSubmitExam, #btnNextQuestion").css("display", "none");
-    if (question.index === examination.totalCount) {
-        $("#btnSubmitExam").show();
-    } else {
-        $("#btnNextQuestion").show();
-    }
 }
 
 function startExam() {
@@ -94,14 +85,11 @@ function answerQuestion() {
             } else {
                 $("#resultFailed").show();
             }
-            if (question.index === examination.totalCount) {
-                return;
-            }
-            // 启动延时(答对了，停留3秒，答错了，停留5秒)
-            restSec = question.actualScore > 0 ? 3 : 5;
+            // 启动延时(答对了，停留2秒，答错了，停留5秒)
+            restSec = question.actualScore > 0 ? 2 : 10;
             refreshNextQuestionButton();
             clearInterval(intervalNextQuestion);
-            intervalNextQuestion = setInterval(refreshRestTime, 1000);
+            intervalNextQuestion = setInterval(refreshRestTime, 100);
         }
     });
 }
@@ -111,17 +99,22 @@ var restSec = -1;
 
 function refreshNextQuestionButton() {
     if (restSec > 0) {
-        $("#btnNextQuestion").text("下一题(" + restSec + ")");
+        $("#timeWait").text("(" + restSec + ")");
     } else {
-        $("#btnNextQuestion").text("下一题");
+        $("#timeWait").text("");
     }
 }
 
 function refreshRestTime() {
-    restSec = restSec - 1;
+    restSec = restSec - 0.1;
     refreshNextQuestionButton();
+
     if (restSec <= 0) {
-        nextQuestion();
+        if (question.index === examination.totalCount) {
+            submitExam();
+        } else {
+            nextQuestion();
+        }
     }
 }
 

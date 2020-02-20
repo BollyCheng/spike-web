@@ -18,7 +18,7 @@ public abstract class AbstractSubjectGen {
     protected int generateRandomNum(int minValue, int maxValue) {
         int rndNum = maxValue - minValue;
         if (rndNum <= 0) {
-            return 0;
+            return minValue;
         }
         return random.nextInt(rndNum) + minValue;
     }
