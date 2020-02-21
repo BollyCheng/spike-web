@@ -7,9 +7,9 @@ import com.bolly.spike.service.math.gen.options.SimpleOptions;
 /**
  * 100以内不进位加法
  */
-public class NoCarrierPlusIn100Subject extends SimplePlusSubject {
+public class NoCarryPlusIn100Subject extends SimplePlusSubject {
 
-    public NoCarrierPlusIn100Subject() {
+    public NoCarryPlusIn100Subject() {
         int unitDigit = generateRandomNum(0, 9);
         int tensDigit = generateRandomNum(1, 9);
         num1 = tensDigit * 10 + unitDigit;
