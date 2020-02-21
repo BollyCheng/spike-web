@@ -30,7 +30,7 @@ public class QuestionFactory {
             if (rndValue >= 101) {
                 subjectGen = new SimplePlusIn100Subject();
             } else if (rndValue >= 40) {
-                subjectGen = new NoCarrierPlusIn100Subject();
+                subjectGen = new NoCarryPlusIn100Subject();
             } else if (rndValue >= 30) {
                 subjectGen = new SimplePlusIn20Subject();
             } else if (rndValue >= 20) {
