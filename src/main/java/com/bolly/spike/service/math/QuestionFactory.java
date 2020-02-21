@@ -14,7 +14,7 @@ public class QuestionFactory {
         int rndType = new Random().nextInt(100);
         int rndValue = new Random().nextInt(100);
         AbstractSubjectGen subjectGen;
-        if (rndType >= 50) {
+        if (rndType >= 20) {
             if (rndValue >= 101) {
                 subjectGen = new SimpleSubtractIn100Subject();
             } else if (rndValue >= 70) {
@@ -29,9 +29,11 @@ public class QuestionFactory {
         } else {
             if (rndValue >= 101) {
                 subjectGen = new SimplePlusIn100Subject();
-            } else if (rndValue >= 70) {
-                subjectGen = new SimplePlusIn20Subject();
             } else if (rndValue >= 40) {
+                subjectGen = new NoCarrierPlusIn100Subject();
+            } else if (rndValue >= 30) {
+                subjectGen = new SimplePlusIn20Subject();
+            } else if (rndValue >= 20) {
                 subjectGen = new SimplePlusIn20SubjectA();
             } else if (rndValue >= 10) {
                 subjectGen = new SimplePlusIn20SubjectB();
